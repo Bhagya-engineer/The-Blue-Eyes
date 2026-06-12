@@ -1,0 +1,6 @@
+{
+  "name": "The Blue Eye Events",
+  "description": "Premium event management company specializing in luxurious weddings, family functions, sangeet, photography, catering, and destination planning with aesthetic and professional excellence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
