@@ -5,6 +5,7 @@ import PackagesCalculator from './components/PackagesCalculator';
 import BookingWizard from './components/BookingWizard';
 import GalleryGrid from './components/GalleryGrid';
 import ReviewsSection from './components/ReviewsSection';
+import Chatbot from './components/Chatbot';
 import { servicesData, packagesData, HERO_IMAGE_PATH } from './data';
 import { ServiceItem, PricingPackage } from './types';
 
@@ -750,6 +751,9 @@ export default function App() {
         onClose={() => setIsBookingOpen(false)}
         initialData={bookingInitialData}
       />
+
+      {/* 13. AI-Powered Concierge Chatbot Widget */}
+      <Chatbot />
 
     </div>
   );
