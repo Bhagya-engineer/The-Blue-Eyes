@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "booking": {
+      "title": "BookingRequest",
+      "description": "Secure Luxury Event Secured Booking Appointment",
+      "type": "object",
+      "properties": {
+        "clientName": {
+          "type": "string",
+          "description": "Full name of the client"
+        },
+        "clientEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the client"
+        },
+        "clientPhone": {
+          "type": "string",
+          "description": "Phone number of the client"
+        },
+        "eventDate": {
+          "type": "string",
+          "description": "Date of the scheduled celebration"
+        },
+        "eventType": {
+          "type": "string",
+          "description": "Type of event (marriage, sangeet, sangeet timeline, etc.)",
+          "enum": ["Marriage", "Sangeet", "Reception", "Engagement", "Pre-Wedding Shoot"]
+        },
+        "guestCount": {
+          "type": "number",
+          "description": "Estimated guest invitation count"
+        },
+        "selectedPackageId": {
+          "type": "string",
+          "description": "Active base package selection"
+        },
+        "selectedServices": {
+          "type": "array",
+          "description": "Customized extra modular services"
+        },
+        "customMessage": {
+          "type": "string",
+          "description": "Bespoke notes or client instructions"
+        },
+        "estimatedCost": {
+          "type": "number",
+          "description": "Bespoke total price estimation"
+        },
+        "bookingRef": {
+          "type": "string",
+          "description": "Unique reference transaction identifier"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Date when booking was securely registered"
+        },
+        "customMenu": {
+          "type": "array",
+          "description": "Bespoke Catering choices requested for plates"
+        }
+      },
+      "required": ["clientName", "clientEmail", "clientPhone", "eventDate", "estimatedCost"]
+    },
+    "review": {
+      "title": "ReviewItem",
+      "description": "Patron feedback and review remark",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the patron reviewer"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the patron reviewer (Bride, Groom, Parent, Guest)"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Score from 1 to 5 stars"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Comment and warm verification remarks"
+        },
+        "date": {
+          "type": "string",
+          "description": "Verification date string"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Two letter initials avatar representation"
+        }
+      },
+      "required": ["name", "comment", "rating"]
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "booking",
+      "description": "Individual client appointments on cloud"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "review",
+      "description": "Curated testimonials and submitted patron reviews"
+    }
+  }
+}

@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-bg: #F8F5F2;
+  --color-brand-bg: #060913;
   --color-brand-navy: #1E3A5F;
   --color-brand-navy-light: #2C4E78;
   --color-brand-gold: #D4AF37;
   --color-brand-gold-bright: #E5C158;
-  --color-brand-dark: #333333;
-  --color-brand-charcoal: #1E232A;
-  --color-brand-ivory: #FDFBF8;
+  --color-brand-dark: #FFFFFF;
+  --color-brand-charcoal: #060913;
+  --color-brand-ivory: #111726;
 
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -26,6 +26,8 @@
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #060913;
+    color: #FFFFFF;
   }
 }
 
@@ -34,27 +36,90 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F5F2;
+  background: #060913;
 }
 ::-webkit-scrollbar-thumb {
   background: #D4AF37;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1E3A5F;
+  background: #2C4E78;
 }
 
 /* Glassmorphism utility definitions */
 .glass-panel {
-  background: rgba(253, 251, 248, 0.85);
+  background: rgba(17, 23, 38, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .glass-panel-navy {
-  background: rgba(30, 58, 95, 0.9);
+  background: rgba(17, 23, 38, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Dark theme white font and container overrides */
+@layer utilities {
+  /* Convert all black/dark fonts to white, silver, and ivory shades */
+  .text-brand-navy,
+  .text-slate-900,
+  .text-slate-800,
+  .text-[#1E3A5F] {
+    color: #FFFFFF !important;
+  }
+
+  .text-slate-700,
+  .text-slate-600,
+  .text-\[\#666\],
+  .text-[#666],
+  .text-slate-500 {
+    color: #E2E8F0 !important;
+  }
+
+  .text-slate-400,
+  .text-[#888],
+  .text-\[\#888\],
+  .text-[#777],
+  .text-\[\#777\] {
+    color: #94A3B8 !important;
+  }
+
+  /* Exclude or correct button hover states containing text-brand-navy so they keep contrast on gold backgrounds */
+  button:hover.hover\:text-brand-navy,
+  button:hover .hover\:text-brand-navy,
+  a:hover.hover\:text-brand-navy,
+  a:hover .hover\:text-brand-navy,
+  .hover\:text-brand-navy:hover {
+    color: #060913 !important;
+  }
+
+  /* Map standard light backgrounds to deep premium dark-navy cards and controls */
+  .bg-white,
+  .bg-brand-white,
+  .bg-\[\#FAF7F4\],
+  .bg-\[\#FAF7F4\]\/50,
+  .bg-\[\#FAF7F4\]\/55,
+  .bg-\[\#FAF7F4\]\/60 {
+    background-color: #111726 !important;
+    border-color: rgba(212, 175, 55, 0.2) !important;
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: #1A2234 !important;
+    color: #FFFFFF !important;
+    border-color: rgba(212, 175, 55, 0.25) !important;
+  }
+
+  /* Soften general border slate colors for dark theme visual hierarchy */
+  .border-slate-200,
+  .border-slate-100,
+  .border-slate-100\/90,
+  .border-slate-200\/60 {
+    border-color: rgba(212, 175, 55, 0.15) !important;
+  }
 }
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { reviewsData } from '../data';
 import { ReviewItem } from '../types';
 import { Star, MessageSquareCode, Sparkles, User, FileEdit, CheckCheck } from 'lucide-react';
+import { db, handleFirestoreError, OperationType } from '../firebase';
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 
 export default function ReviewsSection() {
   const [reviews, setReviews] = useState<ReviewItem[]>([]);
@@ -15,10 +17,23 @@ export default function ReviewsSection() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Load reviews + append local storage additions
+  // Load reviews + append Firestore & local storage additions
   useEffect(() => {
-    const savedReviews = JSON.parse(localStorage.getItem('bee_reviews') || '[]');
-    setReviews([...reviewsData, ...savedReviews]);
+    const fetchReviews = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'reviews'));
+        const fbReviews: ReviewItem[] = [];
+        querySnapshot.forEach((doc) => {
+          fbReviews.push({ id: doc.id, ...doc.data() } as ReviewItem);
+        });
+        setReviews([...reviewsData, ...fbReviews]);
+      } catch (error) {
+        console.warn("Failed to load reviews from Firestore, falling back to local:", error);
+        const savedReviews = JSON.parse(localStorage.getItem('bee_reviews') || '[]');
+        setReviews([...reviewsData, ...savedReviews]);
+      }
+    };
+    fetchReviews();
   }, []);
 
   const handleReviewSubmit = (e: React.FormEvent) => {
@@ -36,8 +51,9 @@ export default function ReviewsSection() {
       .substring(0, 2)
       .toUpperCase() || 'BE';
 
+    const docId = `rev-dyn-${Date.now()}`;
     const newReview: ReviewItem = {
-      id: `rev-dyn-${Date.now()}`,
+      id: docId,
       name: name,
       role: role,
       rating: rating,
@@ -50,13 +66,39 @@ export default function ReviewsSection() {
       avatar: initials
     };
 
-    // Store in browser
-    const saved = JSON.parse(localStorage.getItem('bee_reviews') || '[]');
-    saved.push(newReview);
-    localStorage.setItem('bee_reviews', JSON.stringify(saved));
+    const submitToFirestore = async () => {
+      try {
+        await setDoc(doc(db, 'reviews', docId), {
+          name: newReview.name,
+          role: newReview.role,
+          rating: newReview.rating,
+          comment: newReview.comment,
+          date: newReview.date,
+          avatar: newReview.avatar
+        });
 
-    // Update state
-    setReviews([...reviewsData, ...saved]);
+        // Also keep local fallback
+        const saved = JSON.parse(localStorage.getItem('bee_reviews') || '[]');
+        saved.push(newReview);
+        localStorage.setItem('bee_reviews', JSON.stringify(saved));
+
+        // Re-read or append in state
+        setReviews((prev) => {
+          if (prev.some(r => r.id === docId)) return prev;
+          return [...prev, newReview];
+        });
+      } catch (error) {
+        console.error("Failed to submit review to Firestore:", error);
+        // Fallback to storing in browser local
+        const saved = JSON.parse(localStorage.getItem('bee_reviews') || '[]');
+        saved.push(newReview);
+        localStorage.setItem('bee_reviews', JSON.stringify(saved));
+        setReviews([...reviewsData, ...saved]);
+        handleFirestoreError(error, OperationType.CREATE, `reviews/${docId}`);
+      }
+    };
+    
+    submitToFirestore();
 
     // Clear inputs & transition
     setName('');
@@ -67,6 +109,7 @@ export default function ReviewsSection() {
       setShowAddForm(false);
     }, 2000);
   };
+
 
   return (
     <section id="reviews" className="py-20 bg-[#FAF7F4] relative border-b border-brand-gold/15">

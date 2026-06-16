@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, Gift, Users, Mail, Phone, UserCheck, CheckCircle2, Ticket, Printer, ArrowRight } from 'lucide-react';
 import { BookingRequest } from '../types';
+import { db, handleFirestoreError, OperationType } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 interface BookingWizardProps {
   isOpen: boolean;
@@ -35,6 +37,7 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
 
   // Success state container
   const [confirmedBooking, setConfirmedBooking] = useState<BookingRequest | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Sync initial parameters when triggered from packages/calculator
   useEffect(() => {
@@ -62,10 +65,13 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
       return;
     }
 
+    setIsSubmitting(true);
+
     // Generate luxurious Booking Invoice registry
     const refCode = `BEE-${Math.floor(100000 + Math.random() * 90000)}`;
+    const docId = `book-${Date.now()}`;
     const newBooking: BookingRequest = {
-      id: `book-${Date.now()}`,
+      id: docId,
       clientName: name,
       clientEmail: email,
       clientPhone: phone,
@@ -85,13 +91,48 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
       customMenu: menuItems,
     };
 
-    // Save persistent event registries to localStorage
-    const saved = JSON.parse(localStorage.getItem('bee_bookings') || '[]');
-    saved.push(newBooking);
-    localStorage.setItem('bee_bookings', JSON.stringify(saved));
+    const submitToFirestore = async () => {
+      try {
+        await setDoc(doc(db, 'bookings', docId), {
+          clientName: newBooking.clientName,
+          clientEmail: newBooking.clientEmail,
+          clientPhone: newBooking.clientPhone,
+          eventDate: newBooking.eventDate,
+          eventType: newBooking.eventType,
+          guestCount: Number(newBooking.guestCount),
+          selectedPackageId: newBooking.selectedPackageId,
+          selectedServices: newBooking.selectedServices || [],
+          customMessage: newBooking.customMessage || '',
+          estimatedCost: Number(newBooking.estimatedCost),
+          bookingRef: newBooking.bookingRef,
+          timestamp: newBooking.timestamp,
+          customMenu: newBooking.customMenu || []
+        });
 
-    setConfirmedBooking(newBooking);
+        // Save persistent fallback to localStorage
+        const saved = JSON.parse(localStorage.getItem('bee_bookings') || '[]');
+        saved.push(newBooking);
+        localStorage.setItem('bee_bookings', JSON.stringify(saved));
+
+        setConfirmedBooking(newBooking);
+      } catch (error) {
+        console.error("Failed to post booking reference to Firestore:", error);
+        
+        // Local state graceful fallback
+        const saved = JSON.parse(localStorage.getItem('bee_bookings') || '[]');
+        saved.push(newBooking);
+        localStorage.setItem('bee_bookings', JSON.stringify(saved));
+        setConfirmedBooking(newBooking);
+
+        handleFirestoreError(error, OperationType.CREATE, `bookings/${docId}`);
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+    submitToFirestore();
   };
+
 
   const handlePrint = () => {
     window.print();
@@ -402,9 +443,10 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
             <button
               type="submit"
               id="book-submit-btn"
-              className="w-full py-4 bg-brand-navy hover:bg-brand-gold text-brand-ivory hover:text-brand-navy font-mono text-xs font-bold tracking-widest uppercase rounded-xl transition-all duration-300 border border-brand-gold/20 flex items-center justify-center gap-2 cursor-pointer"
+              disabled={isSubmitting}
+              className="w-full py-4 bg-brand-navy hover:bg-brand-gold text-brand-ivory hover:text-brand-navy font-mono text-xs font-bold tracking-widest uppercase rounded-xl transition-all duration-300 border border-brand-gold/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              SECURE EVENT APPOINTMENT
+              {isSubmitting ? 'Securing Celebration Appointment...' : 'SECURE EVENT APPOINTMENT'}
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
 
