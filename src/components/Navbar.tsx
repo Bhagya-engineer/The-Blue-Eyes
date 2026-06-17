@@ -47,15 +47,15 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
           {/* Logo brand */}
           <div className="flex-shrink-0 flex items-center gap-2">
             <a href="#home" className="group flex items-center gap-2">
-              <div className="relative w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center border-2 border-brand-gold shadow-md">
-                <Sparkles className="w-5 h-5 text-brand-gold group-hover:rotate-12 transition-transform" />
-                <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-gold-bright rounded-full animate-ping" />
+              <div className="relative w-10 h-10 rounded-full bg-[#152244] flex items-center justify-center border-2 border-[#F5D76E] shadow-md">
+                <Sparkles className="w-5 h-5 text-[#F5D76E] group-hover:rotate-12 transition-transform" />
+                <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFF38F] rounded-full animate-ping" />
               </div>
               <div className="flex flex-col ml-1">
-                <span className="font-serif text-lg sm:text-xl font-bold tracking-wider text-brand-navy group-hover:text-brand-gold transition-colors">
+                <span className="font-serif text-lg sm:text-xl font-bold tracking-wider text-[#F5D76E] group-hover:text-[#FFF38F] transition-colors">
                   The Blue Eye
                 </span>
-                <span className="text-[9px] uppercase tracking-widest text-[#666] font-mono leading-none">
+                <span className="text-[9px] uppercase tracking-widest text-[#B8C4E0] font-mono leading-none">
                   E v e n t s
                 </span>
               </div>
@@ -68,16 +68,16 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
               <a
                 key={item.label}
                 href={item.href}
-                className="relative px-3 py-2 text-sm font-medium tracking-wide text-brand-navy hover:text-brand-gold transition-all duration-200 group"
+                className="relative px-3 py-2 text-sm font-semibold tracking-wide text-[#DCE6FF] hover:text-[#F5D76E] transition-all duration-200 group"
               >
                 {item.label}
                 {item.badge && (
-                  <span className="absolute -top-1.5 -right-2 px-1 text-[8px] bg-brand-gold text-brand-navy font-bold rounded-sm animate-pulse">
+                  <span className="absolute -top-1.5 -right-2 px-1 text-[8px] bg-[#F5D76E] text-[#0B1633] font-bold rounded-sm animate-pulse">
                     {item.badge}
                   </span>
                 )}
                 {/* Underline Hover effect */}
-                <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
+                <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#F5D76E] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
               </a>
             ))}
           </div>
@@ -87,14 +87,14 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
             <button
               id="nav-calc-btn"
               onClick={onOpenCalculator}
-              className="px-4 py-2 text-xs font-mono tracking-wider font-semibold border-2 border-brand-gold text-brand-navy rounded-full bg-transparent hover:bg-brand-gold hover:text-brand-navy transition-all duration-300"
+              className="px-4 py-2 text-xs font-mono tracking-wider font-bold border-2 border-[#F5D76E] text-[#F5D76E] rounded-full bg-transparent hover:bg-[#F5D76E] hover:text-[#0B1633] transition-all duration-300"
             >
               ESTIMATE COST
             </button>
             <button
               id="nav-book-btn"
               onClick={onOpenBooking}
-              className="px-5 py-2.5 bg-brand-navy text-brand-ivory text-xs font-semibold tracking-wider font-mono border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-brand-navy shadow-md hover:scale-105 transition-all duration-300 flex items-center gap-1.5"
+              className="px-5 py-2.5 bg-[#F5D76E] text-[#0B1633] text-xs font-bold tracking-wider font-mono border border-[#F5D76E]/30 rounded-full hover:bg-[#FFF38F] shadow-md hover:scale-105 transition-all duration-300 flex items-center gap-1.5"
             >
               <CalendarDays className="w-3.5 h-3.5" />
               PLAN MY EVENT
@@ -106,14 +106,14 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
             <button
               id="nav-mobile-calc-btn"
               onClick={onOpenCalculator}
-              className="px-3 py-1.5 text-[10px] font-mono border border-brand-gold text-brand-navy rounded-full bg-brand-ivory hover:bg-brand-gold hover:text-brand-navy transition-all"
+              className="px-3 py-1.5 text-[10px] font-mono border border-[#F5D76E] text-[#0B1633] rounded-full bg-[#F5D76E] hover:bg-white hover:text-[#0B1633] transition-all"
             >
               Calculator
             </button>
             <button
               id="mobile-menu-toggle"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-brand-navy hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold rounded-md"
+              className="p-2 text-[#DCE6FF] hover:text-[#F5D76E] focus:outline-none focus:ring-2 focus:ring-brand-gold rounded-md"
               aria-expanded={isOpen}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -128,17 +128,17 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
-        <div className="px-4 pt-2 pb-6 space-y-1 bg-brand-ivory border-b border-brand-gold/30 shadow-lg">
+        <div className="px-4 pt-2 pb-6 space-y-1 bg-[#111A35] border-b border-[#F5D76E]/30 shadow-lg">
           {menuItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="block px-3 py-2.5 rounded-md text-base font-medium text-brand-navy hover:bg-brand-navy hover:text-brand-gold transition-colors duration-200"
+              className="block px-3 py-2.5 rounded-md text-base font-semibold text-[#DCE6FF] hover:bg-[#1A2544] hover:text-[#F5D76E] transition-colors duration-200"
             >
               {item.label}
               {item.badge && (
-                <span className="ml-2 px-1.5 py-0.5 text-[8px] tracking-widest bg-brand-gold text-brand-navy rounded font-bold uppercase">
+                <span className="ml-2 px-1.5 py-0.5 text-[8px] tracking-widest bg-[#F5D76E] text-[#0B1633] rounded font-bold uppercase">
                   {item.badge}
                 </span>
               )}
@@ -150,7 +150,7 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
                 setIsOpen(false);
                 onOpenBooking();
               }}
-              className="w-full py-3 text-center bg-brand-navy text-brand-ivory font-semibold text-sm tracking-wide rounded-md shadow hover:bg-brand-gold hover:text-brand-navy transition-all flex items-center justify-center gap-2 border border-brand-gold/50"
+              className="w-full py-3 text-center bg-[#F5D76E] text-[#0B1633] font-bold text-sm tracking-wide rounded-md shadow hover:bg-[#FFF38F] hover:text-[#0B1633] transition-all flex items-center justify-center gap-2 border border-[#F5D76E]"
             >
               <CalendarDays className="w-4 h-4" />
               PLAN MY EVENT
