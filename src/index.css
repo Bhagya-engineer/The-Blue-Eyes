@@ -516,5 +516,194 @@
     color: #0B1633 !important;
     box-shadow: 0 4px 15px rgba(245, 215, 110, 0.3) !important;
   }
+
+  /* ==========================================================================
+     5. LIGHT MODE COMPREHENSIVE OVERRIDES
+     ========================================================================== */
+  .light-mode {
+    background-color: #FAF7F4 !important;
+    color: #2D3748 !important;
+  }
+  
+  .light-mode #main-nav {
+    background-color: rgba(250, 247, 244, 0.95) !important;
+    border-color: rgba(173, 139, 16, 0.2) !important;
+  }
+  
+  /* Navigation text inside light mode */
+  .light-mode #main-nav a {
+    color: #1A2544 !important;
+  }
+  .light-mode #main-nav a:hover {
+    color: #AD8B10 !important;
+  }
+  
+  /* Outer elements and sections */
+  .light-mode #about,
+  .light-mode #packages,
+  .light-mode #gallery,
+  .light-mode #contact,
+  .light-mode footer {
+    background-color: #FAF7F4 !important;
+    color: #2D3748 !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  /* Heading typography visibility in light mode */
+  .light-mode #about h2,
+  .light-mode #packages h2,
+  .light-mode #gallery h2,
+  .light-mode #contact h2,
+  .light-mode footer h2,
+  .light-mode #about h3,
+  .light-mode #packages h3,
+  .light-mode #gallery h3,
+  .light-mode #contact h3,
+  .light-mode footer h3,
+  .light-mode h2,
+  .light-mode h3 {
+    color: #152244 !important;
+    text-shadow: none !important;
+  }
+
+  /* Specific heading overrides for the ones requested */
+  .light-mode .text-brand-gold-bright,
+  .light-mode h2.text-brand-gold-bright {
+    color: #152244 !important;
+  }
+  
+  /* Brand subtitles and uppercase gold highlight blocks */
+  .light-mode .text-brand-gold,
+  .light-mode span.text-brand-gold,
+  .light-mode .text-[#F5D76E],
+  .light-mode p.text-brand-gold,
+  .light-mode span.text-brand-gold {
+    color: #AD8B10 !important;
+    text-shadow: none !important;
+  }
+  
+  /* Paragraphs, item list copies, and generic body texts */
+  .light-mode p,
+  .light-mode li,
+  .light-mode #about p,
+  .light-mode #about li,
+  .light-mode #packages p,
+  .light-mode #packages li,
+  .light-mode #gallery p,
+  .light-mode #gallery li,
+  .light-mode #contact p,
+  .light-mode #contact li,
+  .light-mode footer p,
+  .light-mode footer li,
+  .light-mode .text-slate-100,
+  .light-mode .text-slate-200,
+  .light-mode .text-slate-300,
+  .light-mode .text-slate-600 {
+    color: #2D3748 !important;
+  }
+
+  /* Muted metadata lists and labels */
+  .light-mode small,
+  .light-mode span.text-slate-400,
+  .light-mode span.text-slate-500,
+  .light-mode p.text-slate-500,
+  .light-mode .text-slate-400,
+  .light-mode .text-slate-500,
+  .light-mode .text-neutral-500,
+  .light-mode label {
+    color: #4A5568 !important;
+  }
+
+  /* Form inputs in Light mode */
+  .light-mode input,
+  .light-mode select,
+  .light-mode textarea {
+    background-color: #FFFFFF !important;
+    color: #111A35 !important;
+    border: 1px solid #CBD5E1 !important;
+  }
+
+  /* Light mode container bg overrides */
+  .light-mode .bg-white,
+  .light-mode .bg-brand-white,
+  .light-mode .bg-brand-ivory,
+  .light-mode .bg-slate-50,
+  .light-mode .bg-slate-100,
+  .light-mode .glass-panel,
+  .light-mode .glass-panel-navy,
+  .light-mode [id^="package-card-"],
+  .light-mode #chatbot-interface-card,
+  .light-mode #booking-wizard-card,
+  .light-mode [id^="static-pkg-"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  /* Specific adjustments for static packages interior elements in light mode */
+  .light-mode #packages [id^="static-pkg-"] h3 {
+    color: #152244 !important;
+  }
+  .light-mode #packages [id^="static-pkg-"] p,
+  .light-mode #packages [id^="static-pkg-"] span,
+  .light-mode #packages [id^="static-pkg-"] li,
+  .light-mode #packages [id^="static-pkg-"] ul {
+    color: #4A5568 !important;
+  }
+
+  /* Icon visibility inside cards */
+  .light-mode .shrink-0.text-brand-gold,
+  .light-mode .text-brand-gold {
+    color: #AD8B10 !important;
+  }
+
+  /* Ensure button is beautifully golden and readable in light mode */
+  .light-mode .btn-primary,
+  .light-mode #nav-book-btn,
+  .light-mode #book-submit-btn,
+  .light-mode button.bg-brand-navy.text-brand-ivory,
+  .light-mode button#submit-lead-btn {
+    background-color: #AD8B10 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #AD8B10 !important;
+  }
+
+  /* Specific styling overrides for contact form in light mode */
+  .light-mode #contact .bg-brand-white {
+    background-color: #FFFFFF !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+  .light-mode #contact h3 {
+    color: #152244 !important;
+  }
+  .light-mode #contact label {
+    color: #152244 !important;
+    font-weight: 700 !important;
+  }
+  .light-mode #contact input,
+  .light-mode #contact textarea {
+    background-color: #FFFFFF !important;
+    color: #111A35 !important;
+    border: 1px solid #CBD5E1 !important;
+  }
+  .light-mode #contact input::placeholder,
+  .light-mode #contact textarea::placeholder {
+    color: #94A3B8 !important;
+  }
+  .light-mode #contact input:focus,
+  .light-mode #contact textarea:focus {
+    border-color: #AD8B10 !important;
+    box-shadow: 0 0 0 2px rgba(173, 139, 16, 0.15) !important;
+  }
+  .light-mode #contact button#contact-submit-btn {
+    background-color: #152244 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #152244 !important;
+  }
+  .light-mode #contact button#contact-submit-btn:hover {
+    background-color: #AD8B10 !important;
+    border-color: #AD8B10 !important;
+    color: #FFFFFF !important;
+  }
 }
 

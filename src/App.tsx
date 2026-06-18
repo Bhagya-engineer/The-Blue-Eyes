@@ -49,8 +49,13 @@ const ICON_MAP: Record<string, React.ComponentType<any>> = {
 
 export default function App() {
   // Global States
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>(['decor', 'planning', 'photo']);
   const [activeServiceDetail, setActiveServiceDetail] = useState<ServiceItem | null>(null);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
   
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingInitialData, setBookingInitialData] = useState<{
@@ -135,12 +140,14 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg text-brand-dark overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy">
+    <div className={`min-h-screen ${theme === 'light' ? 'light-mode bg-[#FAF7F4]' : 'bg-brand-bg'} text-brand-dark overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy transition-colors duration-300`}>
       
       {/* 1. Header Navigation */}
       <Navbar
         onOpenBooking={handleOpenGeneralBooking}
         onOpenCalculator={handleOpenCalculatorTab}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* 2. Hero Section */}
@@ -245,42 +252,42 @@ export default function App() {
                 OUR CORPORATE LEGACY
               </span>
               
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-gold-bright leading-tight">
                 Authentic Craftsmanship, Flawless Coordinates.
               </h2>
               
               <div className="w-16 h-1 bg-brand-gold rounded-full" />
               
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                At <span className="font-serif font-bold text-brand-navy">The Blue Eye Events</span>, we conceive that every milestone is an exquisite canvas of family heritage. Specializing in marriages, dazzling pre-wedding sangeets, cinematic media, and fine dining, we handle variables from initial ideations to final guest farewells.
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
+                At <span className="font-serif font-bold text-brand-gold-bright underline decoration-brand-gold/45 decoration-2">The Blue Eye Events</span>, we conceive that every milestone is an exquisite canvas of family heritage. Specializing in marriages, dazzling pre-wedding sangeets, cinematic media, and fine dining, we handle variables from initial ideations to final guest farewells.
               </p>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
                 Our approach emphasizes grand aesthetic output without incurring exorbitant overheads. By operating directly through our owned decor warehouse arrays, specialized choreography crews, and elite master chefs, we maintain premium standards at sensible pricing brackets.
               </p>
 
               {/* Key Bullet Highlights */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <div className="flex items-start gap-2 text-xs">
-                  <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4.5 h-4.5 text-brand-gold shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-brand-navy block">Budget Integrity</span>
-                    <span className="text-[#666]">Fully itemized transparent invoicing sheets. No hidden costs.</span>
+                    <span className="font-bold text-white block text-[13.5px] tracking-wide mb-1">Budget Integrity</span>
+                    <span className="text-slate-300 leading-relaxed block">Fully itemized transparent invoicing sheets. No hidden costs.</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 text-xs">
-                  <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4.5 h-4.5 text-brand-gold shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-brand-navy block">Dedicated Directors</span>
-                    <span className="text-[#666]">A single point of contact desk with round-the-clock availability.</span>
+                    <span className="font-bold text-white block text-[13.5px] tracking-wide mb-1">Dedicated Directors</span>
+                    <span className="text-slate-300 leading-relaxed block">A single point of contact desk with round-the-clock availability.</span>
                   </div>
                 </div>
               </div>
 
               {/* Company Director Call out block */}
-              <div className="border-l-4 border-brand-gold pl-4 py-1 italic text-xs text-slate-500 mt-6 bg-brand-ivory/60 p-3 rounded-r-xl">
+              <div className="border-l-4 border-brand-gold pl-4 py-3.5 italic text-xs text-white mt-6 bg-[#18264e] p-4 rounded-r-xl">
                 "We do not merely coordinate chairs and flower stems; we curate a fluid sensory path where families can focus perfectly on celebrating the visual warmth of eternal bonding."
-                <span className="block font-bold text-brand-navy mt-1.5 font-sans not-italic text-[10px] uppercase tracking-wider">— Bhagyalakshmi, Chief Curator</span>
+                <span className="block font-bold text-brand-gold mt-2 font-sans not-italic text-[10.5px] uppercase tracking-wider">— Bhagyalakshmi, Chief Curator</span>
               </div>
 
             </div>
@@ -377,11 +384,11 @@ export default function App() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
               DESIGN LAYOUT BUNDLES
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-gold-bright mt-3 leading-tight">
               Pre-composed Celebrations
             </h2>
             <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
-            <p className="text-slate-600 text-sm sm:text-base">
+            <p className="text-slate-200 text-sm sm:text-base">
               Explore our structured event profiles compiled by master planners. Tap "Customize" on any card to load its parameters directly inside our budget simulator!
             </p>
           </div>
@@ -496,13 +503,13 @@ export default function App() {
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
                   GET IN TOUCH WITH DESIGN LEADERS
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mt-3 leading-tight">
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-gold-bright mt-3 leading-tight">
                   Headquarters & Consultation Desk
                 </h2>
                 <div className="w-16 h-1 bg-brand-gold mt-4 rounded-full" />
               </div>
 
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
                 We accept physical consultation visits strictly via prior ticketing. Contact our primary support desks or plan a virtual layout meet with our visual architects below.
               </p>
 
@@ -568,21 +575,21 @@ export default function App() {
                   <div className="w-14 h-14 bg-[#2E7D32]/10 border border-[#2E7D32] text-[#2E7D32] rounded-full mx-auto flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 animate-bounce" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-brand-navy">Request Registered</h3>
-                  <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
+                  <h3 className="font-serif text-xl font-bold text-brand-gold-bright">Request Registered</h3>
+                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
                     We have received your message with gold priority protocols. A member of the curation advisory panel will call you or reply soon.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleContactSubmit} className="space-y-5">
-                  <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-                    <Compass className="w-5 h-5 text-brand-gold" />
-                    <h3 className="font-serif text-lg font-bold text-brand-navy">Quick Callback Registration</h3>
+                  <div className="flex items-center gap-2 border-b border-brand-gold/15 pb-3">
+                    <Compass className="w-5 h-5 text-brand-gold animate-spin-slow" />
+                    <h3 className="font-serif text-xl font-bold text-brand-gold-bright tracking-wide">Quick Callback Registration</h3>
                   </div>
-
+ 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                      <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
                         Your Full Name *
                       </label>
                       <input
@@ -592,11 +599,11 @@ export default function App() {
                         value={contactName}
                         onChange={(e) => setContactName(e.target.value)}
                         placeholder="E.g., Devrajsinh Jadeja"
-                        className="w-full text-xs p-3 bg-[#FAF7F4] border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                        className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                      <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
                         Email Address *
                       </label>
                       <input
@@ -606,13 +613,13 @@ export default function App() {
                         value={contactEmail}
                         onChange={(e) => setContactEmail(e.target.value)}
                         placeholder="e.g. name@domain.com"
-                        className="w-full text-xs p-3 bg-[#FAF7F4] border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                        className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
                       />
                     </div>
                   </div>
-
+ 
                   <div>
-                    <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                    <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
                       Direct Contact Line
                     </label>
                     <input
@@ -621,12 +628,12 @@ export default function App() {
                       value={contactPhone}
                       onChange={(e) => setContactPhone(e.target.value)}
                       placeholder="+91 XXXXX XXXXX"
-                      className="w-full text-xs p-3 bg-[#FAF7F4] border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                      className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
                     />
                   </div>
-
+ 
                   <div>
-                    <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                    <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
                       Discuss Your Dream Concept *
                     </label>
                     <textarea
@@ -636,19 +643,19 @@ export default function App() {
                       value={contactMsg}
                       onChange={(e) => setContactMsg(e.target.value)}
                       placeholder="Share what type of wedding decoration, sangeet program choreographies, photography coverage, or dynamic food banquets you would like. Our team loves specific design briefs!"
-                      className="w-full text-xs p-3 bg-[#FAF7F4] border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                      className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
                     />
                   </div>
-
+ 
                   <button
                     type="submit"
                     id="contact-submit-btn"
                     className="w-full py-4 bg-brand-navy hover:bg-brand-gold text-brand-ivory hover:text-brand-navy font-mono text-xs font-bold tracking-widest uppercase rounded-xl transition-all border border-brand-gold/15 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     SEND MESSAGE
-                    <Send className="w-3.5 h-3.5" />
+                    <Send className="w-3.5 h-3.5 animate-pulse" />
                   </button>
-
+ 
                 </form>
               )}
             </div>

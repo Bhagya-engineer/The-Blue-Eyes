@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, CalendarDays, Sparkles } from 'lucide-react';
+import { Menu, X, CalendarDays, Sparkles, Sun, Moon } from 'lucide-react';
 
 interface NavbarProps {
   onOpenBooking: () => void;
   onOpenCalculator: () => void;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
-export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps) {
+export default function Navbar({ onOpenBooking, onOpenCalculator, theme, onToggleTheme }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -85,6 +87,14 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
           {/* Booking CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
             <button
+              onClick={onToggleTheme}
+              className="p-2 ml-1 mr-1 rounded-full border border-[#F5D76E]/30 text-[#DCE6FF] hover:text-[#F5D76E] hover:border-[#F5D76E]"
+              aria-label="Toggle Theme"
+              id="theme-toggler"
+            >
+              {theme === 'light' ? <Moon className="w-4.5 h-4.5" /> : <Sun className="w-4.5 h-4.5 text-[#FFE270]" />}
+            </button>
+            <button
               id="nav-calc-btn"
               onClick={onOpenCalculator}
               className="px-4 py-2 text-xs font-mono tracking-wider font-bold border-2 border-[#F5D76E] text-[#F5D76E] rounded-full bg-transparent hover:bg-[#F5D76E] hover:text-[#0B1633] transition-all duration-300"
@@ -103,6 +113,14 @@ export default function Navbar({ onOpenBooking, onOpenCalculator }: NavbarProps)
 
           {/* Mobile menu button */}
           <div className="flex items-center lg:hidden space-x-2">
+            <button
+              onClick={onToggleTheme}
+              className="p-1.5 rounded-full border border-[#F5D76E]/30 text-[#DCE6FF] hover:text-[#F5D76E]"
+              aria-label="Toggle Theme"
+              id="mobile-theme-toggler"
+            >
+              {theme === 'light' ? <Moon className="w-4.5 h-4.5" /> : <Sun className="w-4.5 h-4.5 text-[#FFE270]" />}
+            </button>
             <button
               id="nav-mobile-calc-btn"
               onClick={onOpenCalculator}

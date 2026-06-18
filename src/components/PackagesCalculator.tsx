@@ -162,40 +162,47 @@ export default function PackagesCalculator({
             {/* Step 1: Base Package Preset */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-brand-navy block">
+                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 block">
                   Step 1: Select Baseline Experience
                 </label>
-                <span className="text-[10px] font-semibold text-brand-gold bg-brand-navy/5 px-2 py-0.5 rounded-full uppercase">
+                <span className="text-[10px] font-semibold text-brand-navy bg-brand-navy/5 px-2 py-0.5 rounded-full uppercase">
                   Presets available
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-2.5">
-                {packagesData.map((pkg) => (
-                  <button
-                    key={pkg.id}
-                    id={`calc-preset-${pkg.id}`}
-                    onClick={() => setActivePackageId(pkg.id)}
-                    className={`p-3 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
-                      activePackageId === pkg.id
-                        ? 'bg-brand-navy text-brand-gold border-brand-gold shadow-md scale-[1.02]'
-                        : 'bg-brand-bg/40 text-brand-navy border-slate-200/80 hover:bg-white hover:border-brand-gold/45'
-                    }`}
-                  >
-                    <p className="text-xs font-bold leading-snug tracking-wide">{pkg.name.split(' ')[1] || pkg.name}</p>
-                    <p className="text-[9px] font-mono opacity-80 mt-1">₹{(pkg.price / 1000).toFixed(0)}k Base</p>
-                  </button>
-                ))}
+                {packagesData.map((pkg) => {
+                  const isActive = activePackageId === pkg.id;
+                  return (
+                    <button
+                      key={pkg.id}
+                      id={`calc-preset-${pkg.id}`}
+                      onClick={() => setActivePackageId(pkg.id)}
+                      className={`p-3 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? 'bg-brand-navy border-brand-gold shadow-md scale-[1.02]'
+                          : 'border-slate-200 bg-white hover:bg-slate-50'
+                      }`}
+                    >
+                      <p className={`text-xs font-bold leading-snug tracking-wide ${isActive ? 'text-white' : 'text-slate-800'}`}>
+                        {pkg.name.split(' ')[1] || pkg.name}
+                      </p>
+                      <p className={`text-[9px] font-mono mt-1 ${isActive ? 'text-[#F5D76E]' : 'text-slate-500'}`}>
+                        ₹{(pkg.price / 1000).toFixed(0)}k Base
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             {/* Step 2: Slider for guest size */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-brand-navy flex items-center gap-1.5">
+                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
                   Step 2: Guest Count
-                  <span className="font-sans font-bold text-brand-gold text-lg ml-1">({guests})</span>
+                  <span className="font-sans font-bold text-[#AD8B10] text-lg ml-1">({guests})</span>
                 </label>
-                <span className="text-[10px] font-mono text-slate-400">Range: 50 - 1000 guests</span>
+                <span className="text-[10px] font-mono text-slate-500">Range: 50 - 1000 guests</span>
               </div>
               
               <div className="relative pt-1 pl-1 pr-1">
@@ -207,9 +214,9 @@ export default function PackagesCalculator({
                   step="10"
                   value={guests}
                   onChange={(e) => setGuests(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-gold"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#AD8B10]"
                 />
-                <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-2">
+                <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
                   <span>52 Intimate RSVP</span>
                   <span>350 Classic Ceremony</span>
                   <span>750 Grand Gala</span>
@@ -221,8 +228,8 @@ export default function PackagesCalculator({
             {/* Step 3: Food / Catering Tier */}
             <div>
               <div className="flex items-center gap-1.5 mb-3">
-                <Utensils className="w-4 h-4 text-brand-gold" />
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-brand-navy">
+                <Utensils className="w-4 h-4 text-[#AD8B10]" />
+                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
                   Step 3: Culinary & Catering Standard
                 </label>
               </div>
@@ -232,25 +239,34 @@ export default function PackagesCalculator({
                   { id: 'standard', name: 'Gourmet Standard', rate: 750, desc: 'Classic multi-cuisine buffet' },
                   { id: 'premium', name: 'Royal Silver', rate: 1450, desc: 'Elaborate menu with 2 live stalls' },
                   { id: 'gourmet', name: 'Imperial Elite', rate: 2450, desc: 'Highest standard platter + 5 live stalls' }
-                ] as const).map((tier) => (
-                  <button
-                    key={tier.id}
-                    id={`calc-catering-${tier.id}`}
-                    type="button"
-                    onClick={() => setCateringTier(tier.id)}
-                    className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
-                      cateringTier === tier.id
-                        ? 'border-brand-gold bg-brand-navy/5 text-brand-navy shadow-md ring-1 ring-brand-gold/30'
-                        : 'border-slate-200 bg-brand-white hover:bg-slate-50 text-slate-800'
-                    }`}
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-brand-navy">{tier.name}</span>
-                      <span className="text-[10px] font-mono text-brand-gold font-bold font-semibold">₹{tier.rate}/Pl.</span>
-                    </div>
-                    <p className="text-[9px] text-[#777] leading-normal mt-1.5">{tier.desc}</p>
-                  </button>
-                ))}
+                ] as const).map((tier) => {
+                  const isActive = cateringTier === tier.id;
+                  return (
+                    <button
+                      key={tier.id}
+                      id={`calc-catering-${tier.id}`}
+                      type="button"
+                      onClick={() => setCateringTier(tier.id)}
+                      className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-brand-navy border-brand-gold shadow-md ring-1 ring-brand-gold/30'
+                          : 'border-slate-200 bg-white hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className={`text-xs font-bold ${isActive ? 'text-white' : 'text-slate-800'}`}>
+                          {tier.name}
+                        </span>
+                        <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#F5D76E]' : 'text-[#AD8B10]'}`}>
+                          ₹{tier.rate}/Pl.
+                        </span>
+                      </div>
+                      <p className={`text-[9.5px] leading-normal mt-1.5 ${isActive ? 'text-slate-200' : 'text-slate-600'}`}>
+                        {tier.desc}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Gourmet Custom Menu Card Container */}
@@ -399,8 +415,8 @@ export default function PackagesCalculator({
                           {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
-                          <p className="text-xs font-bold tracking-wide">{service.name}</p>
-                          <p className="text-[9px] opacity-80 mt-0.5">Est. ₹{service.basePrice.toLocaleString('en-IN')}</p>
+                          <p className={`text-xs font-bold tracking-wide ${isChecked ? 'text-white' : 'text-slate-800'}`}>{service.name}</p>
+                          <p className={`text-[9.5px] mt-0.5 ${isChecked ? 'text-[#F5D76E]' : 'text-slate-500'}`}>Est. ₹{service.basePrice.toLocaleString('en-IN')}</p>
                         </div>
                       </div>
                     </div>

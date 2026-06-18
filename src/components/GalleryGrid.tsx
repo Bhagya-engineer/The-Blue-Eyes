@@ -30,11 +30,11 @@ export default function GalleryGrid() {
             <Sparkles className="w-3.5 h-3.5 animate-spin-slow text-brand-gold" />
             VISUAL PORTFOLIO
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight animate-fade-in">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3 leading-tight animate-fade-in">
             A Glimpse of Perfection
           </h2>
           <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base">
+          <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
             Every snapshot tells a story of dedicated craftsmanship. Browse our high-end decor configurations, lively sangeets, and pristine culinary setups.
           </p>
         </div>
