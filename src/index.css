@@ -73,7 +73,7 @@
      ========================================================================== */
 
   /* High-Contrast Luxury Gold Titles */
-  #home h1, #home h2, #about h2, #packages h2, #gallery h2, #contact h2, footer h2,
+  #home h1, #home h2, #about h2, #packages h2, #gallery h2, #categories h2, #services h2, #calculator h2, #reviews h2, #contact h2, footer h2,
   .text-brand-gold, .text-brand-gold-bright, h2.text-[#0B1633] {
     color: #F5D76E !important;
     font-weight: 700 !important;
@@ -86,6 +86,10 @@
   #about h3, #about h4, #about h5, #about h6,
   #packages h3, #packages h4, #packages h5, #packages h6,
   #gallery h3, #gallery h4, #gallery h5, #gallery h6,
+  #categories h3, #categories h4, #categories h5, #categories h6,
+  #services h3, #services h4, #services h5, #services h6,
+  #calculator h3, #calculator h4, #calculator h5, #calculator h6,
+  #reviews h3, #reviews h4, #reviews h5, #reviews h6,
   #contact h3, #contact h4, #contact h5, #contact h6,
   footer h3, footer h4,
   [id^="preview-booking-modal"] h3,
@@ -102,6 +106,10 @@
   #about p, #about li,
   #packages p, #packages li,
   #gallery p, #gallery li,
+  #categories p, #categories li,
+  #services p, #services li,
+  #calculator p, #calculator li,
+  #reviews p, #reviews li,
   #contact p, #contact li,
   footer p, footer li,
   .text-slate-600, .text-neutral-600, .text-gray-600, .text-zinc-600, .text-slate-700 {
@@ -217,122 +225,142 @@
 
   /* ==========================================================================
      2. SMART CONTRAST SYSTEM FOR LIGHT SECTIONS & MODULES
-        Applied target-selectively to: #services, #calculator, #reviews, #booking-dialog-light
+        Applied target-selectively to: .light-mode sections
      ========================================================================== */
 
-  #services, #calculator, #reviews {
+  .light-mode #categories,
+  .light-mode #services,
+  .light-mode #calculator,
+  .light-mode #reviews {
     background-color: #FAF7F4 !important;
   }
 
   /* Section Titles for Light Backgrounds */
-  #services h2, #calculator h2, #reviews h2 {
+  .light-mode #categories h2,
+  .light-mode #services h2,
+  .light-mode #calculator h2,
+  .light-mode #reviews h2 {
     color: #1A1A1A !important;
     text-shadow: none !important;
   }
 
   /* Ensure the gold subtitle/subheadings inside light background pages (like Exclusive Planning Suite) are beautifully visible dark gold */
-  #services .text-brand-gold,
-  #calculator .text-brand-gold,
-  #reviews .text-brand-gold,
-  #services [class*="text-brand-gold"],
-  #calculator [class*="text-brand-gold"],
-  #reviews [class*="text-brand-gold"] {
+  .light-mode #categories .text-brand-gold,
+  .light-mode #services .text-brand-gold,
+  .light-mode #calculator .text-brand-gold,
+  .light-mode #reviews .text-brand-gold,
+  .light-mode #categories [class*="text-brand-gold"],
+  .light-mode #services [class*="text-brand-gold"],
+  .light-mode #calculator [class*="text-brand-gold"],
+  .light-mode #reviews [class*="text-brand-gold"] {
     color: #AD8B10 !important;
   }
 
   /* Card and Panel Headings for Light Backgrounds */
-  #services h3, #services h4, #services h5, #services h6,
-  #calculator h3, #calculator h4, #calculator h5, #calculator h6,
-  #reviews h3, #reviews h4, #reviews h5, #reviews h6,
-  #services .font-sans.font-bold, #calculator .font-sans.font-bold, #reviews .font-sans.font-bold {
+  .light-mode #categories h3, .light-mode #categories h4, .light-mode #categories h5, .light-mode #categories h6,
+  .light-mode #services h3, .light-mode #services h4, .light-mode #services h5, .light-mode #services h6,
+  .light-mode #calculator h3, .light-mode #calculator h4, .light-mode #calculator h5, .light-mode #calculator h6,
+  .light-mode #reviews h3, .light-mode #reviews h4, .light-mode #reviews h5, .light-mode #reviews h6,
+  .light-mode #categories .font-sans.font-bold,
+  .light-mode #services .font-sans.font-bold,
+  .light-mode #calculator .font-sans.font-bold,
+  .light-mode #reviews .font-sans.font-bold {
     color: #1A1A1A !important;
   }
 
   /* Subheadings inside Light Backgrounds */
-  #services .text-brand-navy,
-  #calculator .text-brand-navy,
-  #reviews .text-brand-navy,
-  #services p.text-slate-600,
-  #calculator p.text-[#4A5568],
-  #reviews p.text-[#4A5568] {
+  .light-mode #categories .text-brand-navy,
+  .light-mode #services .text-brand-navy,
+  .light-mode #calculator .text-brand-navy,
+  .light-mode #reviews .text-brand-navy,
+  .light-mode #categories p.text-slate-600,
+  .light-mode #services p.text-slate-600,
+  .light-mode #calculator p.text-[#4A5568],
+  .light-mode #reviews p.text-[#4A5568] {
     color: #2D3748 !important;
   }
 
   /* Body text and paragraph copy for Light Backgrounds */
-  #services p, #services li,
-  #calculator p, #calculator li,
-  #reviews p, #reviews li,
-  #services p.text-xs, #calculator p.text-xs, #reviews p.text-xs {
+  .light-mode #categories p, .light-mode #categories li,
+  .light-mode #services p, .light-mode #services li,
+  .light-mode #calculator p, .light-mode #calculator li,
+  .light-mode #reviews p, .light-mode #reviews li,
+  .light-mode #categories p.text-xs,
+  .light-mode #services p.text-xs,
+  .light-mode #calculator p.text-xs,
+  .light-mode #reviews p.text-xs {
     color: #4A5568 !important;
     font-size: 15px !important;
     line-height: 1.68 !important;
   }
 
   /* Small metadata and description lines for Light Backgrounds */
-  #services small, #calculator small, #reviews small,
-  #services span.text-slate-400, #calculator span.text-slate-400, #reviews span.text-slate-400,
-  #services span.text-slate-500, #calculator span.text-slate-500, #reviews span.text-slate-500,
-  #services .text-slate-400, #calculator .text-slate-400, #reviews .text-slate-400,
-  #services .text-slate-500, #calculator .text-slate-500, #reviews .text-slate-500,
-  #services span.text-[#888], #calculator span.text-[#888], #reviews span.text-[#888],
-  #services .text-\[\#888\], #calculator .text-\[\#888\], #reviews .text-\[\#888\],
-  #services .text-[#777], #calculator .text-[#777], #reviews .text-[#777],
-  #services .text-slate-500\/80, #calculator .text-slate-500\/80, #reviews .text-slate-500\/80,
-  #services span.text-[10px], #calculator span.text-[10px], #reviews span.text-[10px] {
+  .light-mode #categories small, .light-mode #services small, .light-mode #calculator small, .light-mode #reviews small,
+  .light-mode #categories span.text-slate-400, .light-mode #services span.text-slate-400, .light-mode #calculator span.text-slate-400, .light-mode #reviews span.text-slate-400,
+  .light-mode #categories span.text-slate-500, .light-mode #services span.text-slate-500, .light-mode #calculator span.text-slate-500, .light-mode #reviews span.text-slate-500,
+  .light-mode #categories .text-slate-400, .light-mode #services .text-slate-400, .light-mode #calculator .text-slate-400, .light-mode #reviews .text-slate-400,
+  .light-mode #categories .text-slate-500, .light-mode #services .text-slate-500, .light-mode #calculator .text-slate-500, .light-mode #reviews .text-slate-500,
+  .light-mode #categories span.text-[#888], .light-mode #services span.text-[#888], .light-mode #calculator span.text-[#888], .light-mode #reviews span.text-[#888],
+  .light-mode #categories .text-\[\#888\], .light-mode #services .text-\[\#888\], .light-mode #calculator .text-\[\#888\], .light-mode #reviews .text-\[\#888\],
+  .light-mode #categories .text-[#777], .light-mode #services .text-[#777], .light-mode #calculator .text-[#777], .light-mode #reviews .text-[#777],
+  .light-mode #categories .text-slate-500\/80, .light-mode #services .text-slate-500\/80, .light-mode #calculator .text-slate-500\/80, .light-mode #reviews .text-slate-500\/80,
+  .light-mode #categories span.text-[10px], .light-mode #services span.text-[10px], .light-mode #calculator span.text-[10px], .light-mode #reviews span.text-[10px] {
     color: #4A5568 !important;
     font-size: 13.5px !important;
     line-height: 1.55 !important;
   }
 
   /* Labels and details indicators inside light layouts */
-  #services label, #calculator label, #reviews label,
-  #services .font-mono.text-[10px], #calculator .font-mono.text-[10px], #reviews .font-mono.text-[10px] {
+  .light-mode #categories label, .light-mode #services label, .light-mode #calculator label, .light-mode #reviews label,
+  .light-mode #categories .font-mono.text-[10px], .light-mode #services .font-mono.text-[10px], .light-mode #calculator .font-mono.text-[10px], .light-mode #reviews .font-mono.text-[10px] {
     color: #2D3748 !important;
     font-weight: 600 !important;
   }
 
   /* White polished card layouts with thin gold border glow on Light Backgrounds */
-  #services .bg-white, #services .bg-brand-white,
-  #calculator .bg-[#FAF7F4] .bg-brand-white, #calculator .bg-brand-white,
-  #reviews .bg-white, #reviews .bg-brand-white,
-  #services [id^="service-card-"], #reviews [id^="review-card-"],
-  #services .shadow-md, #calculator .shadow-md, #reviews .shadow-md {
+  .light-mode #categories .bg-white, .light-mode #categories .bg-brand-white,
+  .light-mode #services .bg-white, .light-mode #services .bg-brand-white,
+  .light-mode #calculator .bg-[#FAF7F4] .bg-brand-white, .light-mode #calculator .bg-brand-white,
+  .light-mode #reviews .bg-white, .light-mode #reviews .bg-brand-white,
+  .light-mode #categories [id^="category-card-"], .light-mode #services [id^="service-card-"], .light-mode #reviews [id^="review-card-"],
+  .light-mode #categories .shadow-md, .light-mode #services .shadow-md, .light-mode #calculator .shadow-md, .light-mode #reviews .shadow-md {
     background-color: #FFFFFF !important;
     border: 1px solid rgba(245, 215, 110, 0.18) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 0 20px rgba(245, 215, 110, 0.06) !important;
   }
 
   /* Inputs, dropdown lists inside light panels */
-  #services input, #services select, #services textarea,
-  #calculator input, #calculator select, #calculator textarea,
-  #reviews input, #reviews select, #reviews textarea {
+  .light-mode #categories input, .light-mode #categories select, .light-mode #categories textarea,
+  .light-mode #services input, .light-mode #services select, .light-mode #services textarea,
+  .light-mode #calculator input, .light-mode #calculator select, .light-mode #calculator textarea,
+  .light-mode #reviews input, .light-mode #reviews select, .light-mode #reviews textarea {
     background-color: #FFFFFF !important;
     color: #1A1A1A !important;
     border: 1px solid rgba(0, 0, 0, 0.18) !important;
   }
-  #services input:focus, #calculator input:focus, #reviews input:focus {
+  .light-mode #categories input:focus, .light-mode #services input:focus, .light-mode #calculator input:focus, .light-mode #reviews input:focus {
     border-color: #F5D76E !important;
     outline: none !important;
     box-shadow: 0 0 0 2px rgba(245, 215, 110, 0.2) !important;
   }
 
   /* Select button contrast fixes inside light cards */
-  #services button.bg-brand-navy\/5,
-  #reviews button.bg-brand-navy\/5,
-  #reviews button#review-trigger-form-btn {
+  .light-mode #services button.bg-brand-navy\/5,
+  .light-mode #reviews button.bg-brand-navy\/5,
+  .light-mode #reviews button#review-trigger-form-btn {
     background-color: #111A35 !important;
     color: #F5D76E !important;
     border-color: rgba(245, 215, 110, 0.2) !important;
   }
-  #services button.bg-brand-navy\/5:hover,
-  #reviews button.bg-brand-navy\/5:hover,
-  #reviews button#review-trigger-form-btn:hover {
+  .light-mode #services button.bg-brand-navy\/5:hover,
+  .light-mode #reviews button.bg-brand-navy\/5:hover,
+  .light-mode #reviews button#review-trigger-form-btn:hover {
     background-color: #F5D76E !important;
     color: #0B1633 !important;
   }
 
   /* Slider active/inactive indicators inside #reviews */
-  #reviews button.bg-brand-navy {
+  .light-mode #reviews button.bg-brand-navy {
     background-color: #111A35 !important;
   }
 
@@ -341,131 +369,131 @@
      ========================================================================== */
 
   /* Baseline Experience Buttons Active State */
-  #calculator button.bg-brand-navy {
+  .light-mode #calculator button.bg-brand-navy {
     background-color: #111A35 !important;
     color: #F5D76E !important;
     border-color: #F5D76E !important;
   }
-  #calculator button.bg-brand-navy p {
+  .light-mode #calculator button.bg-brand-navy p {
     color: #F5D76E !important;
   }
 
   /* Baseline Experience Buttons Inactive State */
-  #calculator button.text-brand-navy,
-  #calculator button.text-slate-800 {
+  .light-mode #calculator button.text-brand-navy,
+  .light-mode #calculator button.text-slate-800 {
     background-color: #FFFFFF !important;
     color: #4A5568 !important;
     border-color: rgba(0, 0, 0, 0.15) !important;
   }
-  #calculator button.text-brand-navy p,
-  #calculator button.text-slate-800 p {
+  .light-mode #calculator button.text-brand-navy p,
+  .light-mode #calculator button.text-slate-800 p {
     color: #1A1A1A !important;
   }
-  #calculator button.text-brand-navy:hover,
-  #calculator button.text-slate-800:hover {
+  .light-mode #calculator button.text-brand-navy:hover,
+  .light-mode #calculator button.text-slate-800:hover {
     background-color: #FAF7F4 !important;
     border-color: #F5D76E !important;
     color: #0B1633 !important;
   }
 
   /* Catering tier and selected indicators inside #calculator */
-  #calculator .border-brand-gold.bg-brand-navy\/5,
-  #calculator [id^="calc-catering-"].border-brand-gold,
-  #calculator [id^="calc-preset-"].bg-brand-navy {
+  .light-mode #calculator .border-brand-gold.bg-brand-navy\/5,
+  .light-mode #calculator [id^="calc-catering-"].border-brand-gold,
+  .light-mode #calculator [id^="calc-preset-"].bg-brand-navy {
     background-color: #111A35 !important;
     border-color: #F5D76E !important;
   }
-  #calculator .border-brand-gold.bg-brand-navy\/5 span,
-  #calculator [id^="calc-catering-"].border-brand-gold span,
-  #calculator [id^="calc-preset-"].bg-brand-navy p,
-  #calculator [id^="calc-preset-"].bg-brand-navy span {
+  .light-mode #calculator .border-brand-gold.bg-brand-navy\/5 span,
+  .light-mode #calculator [id^="calc-catering-"].border-brand-gold span,
+  .light-mode #calculator [id^="calc-preset-"].bg-brand-navy p,
+  .light-mode #calculator [id^="calc-preset-"].bg-brand-navy span {
     color: #FFFFFF !important;
   }
-  #calculator .border-brand-gold.bg-brand-navy\/5 p,
-  #calculator [id^="calc-catering-"].border-brand-gold p {
+  .light-mode #calculator .border-brand-gold.bg-brand-navy\/5 p,
+  .light-mode #calculator [id^="calc-catering-"].border-brand-gold p {
     color: #DCE6FF !important;
   }
-  #calculator .border-brand-gold.bg-brand-navy\/5 span.text-brand-gold,
-  #calculator [id^="calc-catering-"].border-brand-gold span.text-brand-gold {
+  .light-mode #calculator .border-brand-gold.bg-brand-navy\/5 span.text-brand-gold,
+  .light-mode #calculator [id^="calc-catering-"].border-brand-gold span.text-brand-gold {
     color: #F5D76E !important;
   }
-  #calculator .border-brand-gold.bg-brand-navy\/5 span.text-brand-navy,
-  #calculator [id^="calc-catering-"].border-brand-gold span.text-brand-navy {
+  .light-mode #calculator .border-brand-gold.bg-brand-navy\/5 span.text-brand-navy,
+  .light-mode #calculator [id^="calc-catering-"].border-brand-gold span.text-brand-navy {
     color: #FFFFFF !important;
   }
-  #calculator .border-slate-200.bg-brand-white {
+  .light-mode #calculator .border-slate-200.bg-brand-white {
     background-color: #FFFFFF !important;
     color: #4A5568 !important;
     border-color: rgba(0, 0, 0, 0.15) !important;
   }
-  #calculator .border-slate-200.bg-brand-white:hover {
+  .light-mode #calculator .border-slate-200.bg-brand-white:hover {
     border-color: #F5D76E !important;
   }
 
   /* Custom dishes container and other inner items */
-  #calculator .bg-[#FAF7F4] {
+  .light-mode #calculator .bg-[#FAF7F4] {
     background-color: #FAF7F4 !important;
     border-color: rgba(245, 215, 110, 0.2) !important;
   }
-  #calculator .bg-[#FAF7F4] p,
-  #calculator .bg-[#FAF7F4] span,
-  #calculator .bg-[#FAF7F4] font-semibold {
+  .light-mode #calculator .bg-[#FAF7F4] p,
+  .light-mode #calculator .bg-[#FAF7F4] span,
+  .light-mode #calculator .bg-[#FAF7F4] font-semibold {
     color: #4A5568 !important;
   }
 
   /* Guest slider thumb and track */
-  #calculator input[type="range"] {
+  .light-mode #calculator input[type="range"] {
     background-color: #E2E8F0 !important;
   }
 
   /* Ensure the sidebar cost/breakdown summary and verified metrics remain beautifully dark navy */
-  #calculator .lg-col-span-5.bg-brand-navy,
-  #calculator .bg-brand-navy,
-  #reviews .lg-col-span-4.bg-brand-navy,
-  #reviews .bg-brand-navy {
+  .light-mode #calculator .lg-col-span-5.bg-brand-navy,
+  .light-mode #calculator .bg-brand-navy,
+  .light-mode #reviews .lg-col-span-4.bg-brand-navy,
+  .light-mode #reviews .bg-brand-navy {
     background-color: #111A35 !important;
     color: #FFFFFF !important;
     border-color: rgba(245, 215, 110, 0.25) !important;
   }
-  #calculator .bg-brand-navy h3,
-  #calculator .bg-brand-navy h4,
-  #calculator .bg-brand-navy p,
-  #calculator .bg-brand-navy span,
-  #calculator .bg-brand-navy label,
-  #calculator .bg-brand-navy small,
-  #reviews .bg-brand-navy h3,
-  #reviews .bg-brand-navy h4,
-  #reviews .bg-brand-navy p,
-  #reviews .bg-brand-navy span,
-  #reviews .bg-brand-navy div,
-  #reviews .bg-brand-navy small {
+  .light-mode #calculator .bg-brand-navy h3,
+  .light-mode #calculator .bg-brand-navy h4,
+  .light-mode #calculator .bg-brand-navy p,
+  .light-mode #calculator .bg-brand-navy span,
+  .light-mode #calculator .bg-brand-navy label,
+  .light-mode #calculator .bg-brand-navy small,
+  .light-mode #reviews .bg-brand-navy h3,
+  .light-mode #reviews .bg-brand-navy h4,
+  .light-mode #reviews .bg-brand-navy p,
+  .light-mode #reviews .bg-brand-navy span,
+  .light-mode #reviews .bg-brand-navy div,
+  .light-mode #reviews .bg-brand-navy small {
     color: #FFFFFF !important;
   }
-  #calculator .bg-brand-navy .text-brand-gold,
-  #calculator .bg-brand-navy .text-[#F5D76E],
-  #calculator .bg-brand-navy .text-brand-gold-bright,
-  #reviews .bg-brand-navy .text-brand-gold,
-  #reviews .bg-brand-navy .text-[#F5D76E] {
+  .light-mode #calculator .bg-brand-navy .text-brand-gold,
+  .light-mode #calculator .bg-brand-navy .text-[#F5D76E],
+  .light-mode #calculator .bg-brand-navy .text-brand-gold-bright,
+  .light-mode #reviews .bg-brand-navy .text-brand-gold,
+  .light-mode #reviews .bg-brand-navy .text-[#F5D76E] {
     color: #F5D76E !important;
   }
 
   /* Active/selected list elements in calculation break-downs */
-  #calculator .bg-brand-bg\/5 {
+  .light-mode #calculator .bg-brand-bg\/5 {
     background-color: rgba(245, 215, 110, 0.05) !important;
     border-color: rgba(245, 215, 110, 0.1) !important;
   }
 
   /* Add Review form & comments quote layout inside reviews section */
-  #reviews .bg-brand-white,
-  #reviews form {
+  .light-mode #reviews .bg-brand-white,
+  .light-mode #reviews form {
     background-color: #FFFFFF !important;
   }
-  #reviews p.italic {
+  .light-mode #reviews p.italic {
     color: #2D3748 !important; /* Extremely high contrast patron comments text */
   }
 
   /* White polished background card layouts with thin gold border glow inside #calculator */
-  #calculator .bg-brand-ivory {
+  .light-mode #calculator .bg-brand-ivory {
     background-color: #FFFFFF !important;
     border: 1px solid rgba(245, 215, 110, 0.18) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 0 20px rgba(245, 215, 110, 0.06) !important;
@@ -585,6 +613,14 @@
   /* Paragraphs, item list copies, and generic body texts */
   .light-mode p,
   .light-mode li,
+  .light-mode #categories p,
+  .light-mode #categories li,
+  .light-mode #services p,
+  .light-mode #services li,
+  .light-mode #calculator p,
+  .light-mode #calculator li,
+  .light-mode #reviews p,
+  .light-mode #reviews li,
   .light-mode #about p,
   .light-mode #about li,
   .light-mode #packages p,
@@ -598,7 +634,15 @@
   .light-mode .text-slate-100,
   .light-mode .text-slate-200,
   .light-mode .text-slate-300,
-  .light-mode .text-slate-600 {
+  .light-mode .text-slate-600,
+  .light-mode .text-brand-ivory,
+  .light-mode .text-brand-ivory\/55,
+  .light-mode .text-brand-ivory\/60,
+  .light-mode .text-brand-ivory\/70,
+  .light-mode .text-brand-ivory\/75,
+  .light-mode .text-brand-ivory\/80,
+  .light-mode .text-brand-ivory\/85,
+  .light-mode .text-brand-ivory\/90 {
     color: #2D3748 !important;
   }
 

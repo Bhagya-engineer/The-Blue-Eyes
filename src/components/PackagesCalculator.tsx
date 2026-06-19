@@ -21,7 +21,8 @@ export default function PackagesCalculator({
   selectedServiceIds,
   onToggleServiceId,
   onInitiateBooking,
-}: PackagesCalculatorProps) {
+  theme = 'dark',
+}: PackagesCalculatorProps & { theme?: 'light' | 'dark' }) {
   // Calculator States
   const [activePackageId, setActivePackageId] = useState<string>('premium');
   const [guests, setGuests] = useState<number>(250);
@@ -45,8 +46,8 @@ export default function PackagesCalculator({
     if (activePackageId === 'basic') {
       setGuests(120);
       setCateringTier('standard');
-      // basic services preset (decor, planning, photo)
-      const presets = ['decor', 'planning', 'photo'];
+      // basic services preset
+      const presets = ['birthday_decor', 'festival_decor'];
       // replace selection logic
       const toRemove = selectedServiceIds.filter(id => !presets.includes(id));
       const toAdd = presets.filter(id => !selectedServiceIds.includes(id));
@@ -55,8 +56,8 @@ export default function PackagesCalculator({
     } else if (activePackageId === 'premium') {
       setGuests(250);
       setCateringTier('premium');
-      // premium services preset (decor, planning, sangeet, photo, catering, admin)
-      const presets = ['decor', 'planning', 'sangeet', 'photo', 'catering', 'admin'];
+      // premium services preset
+      const presets = ['wedding_decor', 'engagement_decor', 'baby_shower_decor', 'anniversary_decor'];
       const toRemove = selectedServiceIds.filter(id => !presets.includes(id));
       const toAdd = presets.filter(id => !selectedServiceIds.includes(id));
       toRemove.forEach(id => onToggleServiceId(id));
@@ -136,7 +137,7 @@ export default function PackagesCalculator({
   };
 
   return (
-    <section id="calculator" className="py-20 bg-[#FAF7F4] relative border-b border-brand-gold/15">
+    <section id="calculator" className={`py-20 relative border-b border-brand-gold/15 transition-colors duration-300 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-bg'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title Block */}
@@ -144,11 +145,11 @@ export default function PackagesCalculator({
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
             Exclusive Planning Suite
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight">
+          <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 leading-tight ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>
             Interactive Event Cost Estimator
           </h2>
           <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base">
+          <p className={`text-sm sm:text-base ${theme === 'light' ? 'text-slate-600' : 'text-slate-200'}`}>
             Mix and match services, scale guests size, and select catering levels to see an immediate budget breakdown. Transparent, straightforward pricing with premium customization.
           </p>
         </div>
@@ -157,15 +158,15 @@ export default function PackagesCalculator({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Controls Left Column */}
-          <div className="lg:col-span-7 bg-brand-ivory rounded-2xl p-6 sm:p-8 shadow-xl border border-brand-gold/20 space-y-8">
+          <div className={`lg:col-span-7 rounded-2xl p-6 sm:p-8 shadow-xl border space-y-8 transition-colors duration-300 ${theme === 'light' ? 'bg-white border-slate-200' : 'bg-[#111A35] border-brand-gold/25'}`}>
             
             {/* Step 1: Base Package Preset */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 block">
+                <label className={`text-xs font-mono font-bold uppercase tracking-wider block ${theme === 'light' ? 'text-slate-800' : 'text-brand-gold'}`}>
                   Step 1: Select Baseline Experience
                 </label>
-                <span className="text-[10px] font-semibold text-brand-navy bg-brand-navy/5 px-2 py-0.5 rounded-full uppercase">
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase ${theme === 'light' ? 'text-brand-navy bg-brand-navy/5' : 'text-brand-gold bg-brand-gold/10'}`}>
                   Presets available
                 </span>
               </div>
@@ -180,13 +181,15 @@ export default function PackagesCalculator({
                       className={`p-3 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
                         isActive
                           ? 'bg-brand-navy border-brand-gold shadow-md scale-[1.02]'
-                          : 'border-slate-200 bg-white hover:bg-slate-50'
+                          : theme === 'light'
+                            ? 'border-slate-200 bg-white hover:bg-slate-50'
+                            : 'border-brand-gold/25 bg-brand-navy/30 hover:bg-brand-navy/60'
                       }`}
                     >
-                      <p className={`text-xs font-bold leading-snug tracking-wide ${isActive ? 'text-white' : 'text-slate-800'}`}>
+                      <p className={`text-xs font-bold leading-snug tracking-wide ${isActive ? 'text-white' : theme === 'light' ? 'text-slate-800' : 'text-slate-200'}`}>
                         {pkg.name.split(' ')[1] || pkg.name}
                       </p>
-                      <p className={`text-[9px] font-mono mt-1 ${isActive ? 'text-[#F5D76E]' : 'text-slate-500'}`}>
+                      <p className={`text-[9px] font-mono mt-1 ${isActive ? 'text-[#F5D76E]' : theme === 'light' ? 'text-slate-500' : 'text-brand-gold/80'}`}>
                         ₹{(pkg.price / 1000).toFixed(0)}k Base
                       </p>
                     </button>
@@ -198,11 +201,11 @@ export default function PackagesCalculator({
             {/* Step 2: Slider for guest size */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                <label className={`text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 ${theme === 'light' ? 'text-slate-800' : 'text-brand-gold'}`}>
                   Step 2: Guest Count
-                  <span className="font-sans font-bold text-[#AD8B10] text-lg ml-1">({guests})</span>
+                  <span className={`font-sans font-bold text-lg ml-1 ${theme === 'light' ? 'text-[#AD8B10]' : 'text-brand-gold-bright'}`}>({guests})</span>
                 </label>
-                <span className="text-[10px] font-mono text-slate-500">Range: 50 - 1000 guests</span>
+                <span className={`text-[10px] font-mono ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>Range: 50 - 1000 guests</span>
               </div>
               
               <div className="relative pt-1 pl-1 pr-1">
@@ -216,7 +219,7 @@ export default function PackagesCalculator({
                   onChange={(e) => setGuests(Number(e.target.value))}
                   className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#AD8B10]"
                 />
-                <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
+                <div className={`flex justify-between text-[10px] font-mono mt-2 ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>
                   <span>52 Intimate RSVP</span>
                   <span>350 Classic Ceremony</span>
                   <span>750 Grand Gala</span>
@@ -228,8 +231,8 @@ export default function PackagesCalculator({
             {/* Step 3: Food / Catering Tier */}
             <div>
               <div className="flex items-center gap-1.5 mb-3">
-                <Utensils className="w-4 h-4 text-[#AD8B10]" />
-                <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
+                <Utensils className={`w-4 h-4 ${theme === 'light' ? 'text-[#AD8B10]' : 'text-brand-gold'}`} />
+                <label className={`text-xs font-mono font-bold uppercase tracking-wider ${theme === 'light' ? 'text-slate-800' : 'text-brand-gold'}`}>
                   Step 3: Culinary & Catering Standard
                 </label>
               </div>
@@ -250,18 +253,20 @@ export default function PackagesCalculator({
                       className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                         isActive
                           ? 'bg-brand-navy border-brand-gold shadow-md ring-1 ring-brand-gold/30'
-                          : 'border-slate-200 bg-white hover:bg-slate-50'
+                          : theme === 'light'
+                            ? 'border-slate-200 bg-white hover:bg-slate-50'
+                            : 'border-brand-gold/25 bg-brand-navy/30 hover:bg-brand-navy/60 text-slate-200'
                       }`}
                     >
                       <div className="flex justify-between items-center">
-                        <span className={`text-xs font-bold ${isActive ? 'text-white' : 'text-slate-800'}`}>
+                        <span className={`text-xs font-bold ${isActive ? 'text-white' : theme === 'light' ? 'text-slate-800' : 'text-slate-200'}`}>
                           {tier.name}
                         </span>
-                        <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#F5D76E]' : 'text-[#AD8B10]'}`}>
+                        <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#F5D76E]' : theme === 'light' ? 'text-[#AD8B10]' : 'text-brand-gold'}`}>
                           ₹{tier.rate}/Pl.
                         </span>
                       </div>
-                      <p className={`text-[9.5px] leading-normal mt-1.5 ${isActive ? 'text-slate-200' : 'text-slate-600'}`}>
+                      <p className={`text-[9.5px] leading-normal mt-1.5 ${isActive ? 'text-slate-200' : theme === 'light' ? 'text-slate-600' : 'text-slate-300'}`}>
                         {tier.desc}
                       </p>
                     </button>
@@ -270,15 +275,15 @@ export default function PackagesCalculator({
               </div>
 
               {/* Gourmet Custom Menu Card Container */}
-              <div className="mt-4 border border-brand-gold/25 bg-white/50 rounded-xl p-4">
+              <div className={`mt-4 border rounded-xl p-4 transition-colors duration-300 ${theme === 'light' ? 'border-brand-gold/25 bg-white/50' : 'border-brand-gold/25 bg-brand-navy/30'}`}>
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   <div className="flex items-center gap-3">
                     <div className="bg-brand-navy text-brand-gold p-2 rounded-lg">
                       <ChefHat className="w-4.5 h-4.5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-brand-navy font-serif">Signature Menu Builder</p>
-                      <p className="text-[10px] text-slate-500 font-mono mt-0.5">
+                      <p className={`text-xs font-bold font-serif ${theme === 'light' ? 'text-brand-navy' : 'text-slate-100'}`}>Signature Menu Builder</p>
+                      <p className={`text-[10px] font-mono mt-0.5 ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>
                         <span className="text-brand-gold font-bold">Selected: {selectedMenu.length} items</span> ({cateringTier === 'standard' ? 6 : cateringTier === 'premium' ? 8 : 10} included in package)
                       </p>
                     </div>
@@ -296,7 +301,7 @@ export default function PackagesCalculator({
                 {/* Collapsable customized menu builder list */}
                 {isCustomizingMenu && (
                   <div className="mt-4 pt-4 border-t border-slate-200/60 space-y-4.5 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <p className="text-[10px] text-slate-500 font-mono italic leading-relaxed">
+                    <p className={`text-[10px] font-mono italic leading-relaxed ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>
                       * Choose from chef recommendations or draft your own bespoke signature menu. Added items exceeding your tier limit add a nominal ₹65 per plate.
                     </p>
 
@@ -306,7 +311,7 @@ export default function PackagesCalculator({
                       const items = defaultCateringItems.filter((item) => item.category === cat);
                       return (
                         <div key={cat} className="space-y-2">
-                          <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-brand-navy bg-brand-navy/5 px-2.5 py-1 rounded inline-block">
+                          <span className={`text-[9px] font-mono font-bold uppercase tracking-wider bg-brand-navy/5 px-2.5 py-1 rounded inline-block ${theme === 'light' ? 'text-brand-navy bg-brand-navy/5' : 'text-brand-gold bg-brand-gold/10'}`}>
                             {label}
                           </span>
                           
@@ -326,8 +331,8 @@ export default function PackagesCalculator({
                                   }}
                                   className={`p-2.5 rounded-lg border text-left flex items-center justify-between text-xs transition-all cursor-pointer ${
                                     isChecked
-                                      ? 'bg-brand-gold/5 border-brand-gold/45 text-brand-navy font-bold'
-                                      : 'bg-white border-slate-100/90 text-slate-600 hover:border-slate-300'
+                                      ? `bg-brand-gold/10 border-brand-gold/50 font-bold ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`
+                                      : `${theme === 'light' ? 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50' : 'bg-brand-navy/35 border-brand-gold/10 text-slate-300 hover:bg-brand-navy/50'}`
                                   }`}
                                 >
                                   <div className="flex items-center gap-2">
@@ -336,13 +341,13 @@ export default function PackagesCalculator({
                                     }`}>
                                       {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                                     </div>
-                                    <span>{dish.name}</span>
+                                    <span className={isChecked ? 'font-bold' : ''}>{dish.name}</span>
                                   </div>
                                   
                                   {dish.tiers.includes(cateringTier) ? (
                                     <span className="text-[8px] font-mono uppercase bg-emerald-50 text-emerald-600 px-1 py-0.5 rounded font-semibold shrink-0">Included</span>
                                   ) : (
-                                    <span className="text-[8px] font-mono uppercase bg-brand-navy/5 text-brand-gold px-1 py-0.5 rounded shrink-0">+₹65/pl</span>
+                                    <span className={`text-[8px] font-mono uppercase px-1 py-0.5 rounded shrink-0 ${theme === 'light' ? 'bg-brand-navy/5 text-[#AD8B10]' : 'bg-brand-gold/10 text-brand-gold'}`}>+₹65/pl</span>
                                   )}
                                 </button>
                               );
@@ -353,8 +358,8 @@ export default function PackagesCalculator({
                     })}
 
                     {/* Totally Custom Entered Food Form */}
-                    <div className="bg-[#FAF7F4] border border-brand-gold/20 p-3.5 rounded-xl space-y-2">
-                      <span className="text-[9px] font-mono font-bold text-brand-navy uppercase tracking-wider block">
+                    <div className={`border border-brand-gold/20 p-3.5 rounded-xl space-y-2 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-navy/30'}`}>
+                      <span className={`text-[9px] font-mono font-bold uppercase tracking-wider block ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold'}`}>
                         Add Guest Request / Bespoke Recipes
                       </span>
                       <div className="flex gap-2">
@@ -378,7 +383,7 @@ export default function PackagesCalculator({
                           Add +
                         </button>
                       </div>
-                      <p className="text-[9px] font-mono text-slate-500 leading-snug">
+                      <p className={`text-[9px] font-mono leading-snug ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
                         Type any custom delicacy or regional specialities. They will print directly inside your verified layout itinerary sheets!
                       </p>
                     </div>
@@ -391,7 +396,7 @@ export default function PackagesCalculator({
 
             {/* Step 4: Toggle Services checkboxes */}
             <div>
-              <label className="text-xs font-mono font-bold uppercase tracking-wider text-brand-navy block mb-4">
+              <label className={`text-xs font-mono font-bold uppercase tracking-wider block mb-4 ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold'}`}>
                 Step 4: Tailored Event Deliverables
               </label>
 
@@ -405,7 +410,9 @@ export default function PackagesCalculator({
                       className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
                         isChecked
                           ? 'bg-brand-navy/95 border-brand-gold text-brand-white shadow'
-                          : 'bg-brand-white border-slate-200/80 hover:border-brand-gold/40 text-brand-charcoal'
+                          : theme === 'light'
+                            ? 'bg-white border-slate-200 hover:bg-slate-50 text-slate-800'
+                            : 'border-brand-gold/15 bg-brand-navy/35 hover:bg-brand-navy/55 text-slate-200'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -415,8 +422,8 @@ export default function PackagesCalculator({
                           {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
-                          <p className={`text-xs font-bold tracking-wide ${isChecked ? 'text-white' : 'text-slate-800'}`}>{service.name}</p>
-                          <p className={`text-[9.5px] mt-0.5 ${isChecked ? 'text-[#F5D76E]' : 'text-slate-500'}`}>Est. ₹{service.basePrice.toLocaleString('en-IN')}</p>
+                          <p className={`text-xs font-bold tracking-wide ${isChecked ? 'text-white' : theme === 'light' ? 'text-slate-800' : 'text-slate-200'}`}>{service.name}</p>
+                          <p className={`text-[9.5px] mt-0.5 ${isChecked ? 'text-brand-gold-bright' : theme === 'light' ? 'text-slate-500' : 'text-brand-gold'}`}>Est. ₹{service.basePrice.toLocaleString('en-IN')}</p>
                         </div>
                       </div>
                     </div>

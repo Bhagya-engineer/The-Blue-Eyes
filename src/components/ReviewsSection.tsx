@@ -5,7 +5,7 @@ import { Star, MessageSquareCode, Sparkles, User, FileEdit, CheckCheck } from 'l
 import { db, handleFirestoreError, OperationType } from '../firebase';
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 
-export default function ReviewsSection() {
+export default function ReviewsSection({ theme = 'dark' }: { theme?: 'light' | 'dark' }) {
   const [reviews, setReviews] = useState<ReviewItem[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -112,7 +112,7 @@ export default function ReviewsSection() {
 
 
   return (
-    <section id="reviews" className="py-20 bg-[#FAF7F4] relative border-b border-brand-gold/15">
+    <section id="reviews" className={`py-20 relative border-b border-brand-gold/15 transition-colors duration-300 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-bg'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title layout */}
@@ -120,11 +120,11 @@ export default function ReviewsSection() {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
             Voices of Romance & Celebrations
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight">
+          <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 leading-tight ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>
             Loved By Families
           </h2>
           <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base">
+          <p className={`text-sm sm:text-base ${theme === 'light' ? 'text-slate-600' : 'text-slate-200'}`}>
             Every celebration leaves a lifelong trace in the hearts of family elders, brides, and grooms. Read authentic testimonies from our distinguished patrons.
           </p>
         </div>
@@ -133,7 +133,7 @@ export default function ReviewsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Main Review Display (8 columns) */}
-          <div className="lg:col-span-8 flex flex-col justify-between bg-brand-white border border-brand-gold/15 rounded-2xl p-6 sm:p-10 shadow-lg relative min-h-80">
+          <div className={`lg:col-span-8 flex flex-col justify-between border rounded-2xl p-6 sm:p-10 shadow-lg relative min-h-80 transition-colors duration-300 ${theme === 'light' ? 'bg-white border-brand-gold/15' : 'bg-[#111A35] border-brand-gold/25'}`}>
             <div className="absolute top-6 right-6 font-mono text-8xl text-brand-gold/10 font-bold select-none leading-none">
               “
             </div>
@@ -148,14 +148,14 @@ export default function ReviewsSection() {
                       className={`w-5 h-5 ${
                         idx < reviews[activeTab].rating
                           ? 'fill-brand-gold text-brand-gold'
-                          : 'text-slate-200'
+                          : theme === 'light' ? 'text-slate-200' : 'text-slate-700'
                       }`}
                     />
                   ))}
                 </div>
 
                 {/* Comment quote text */}
-                <p className="font-serif text-[17px] sm:text-lg italic text-[#222] leading-relaxed">
+                <p className={`font-serif text-[17px] sm:text-lg italic leading-relaxed ${theme === 'light' ? 'text-slate-800' : 'text-slate-200'}`}>
                   "{reviews[activeTab].comment}"
                 </p>
 
@@ -166,10 +166,10 @@ export default function ReviewsSection() {
                     {reviews[activeTab].avatar}
                   </div>
                   <div>
-                    <h4 className="font-sans font-bold text-brand-navy text-sm sm:text-base">
+                    <h4 className={`font-sans font-bold text-sm sm:text-base ${theme === 'light' ? 'text-brand-navy' : 'text-slate-100'}`}>
                       {reviews[activeTab].name}
                     </h4>
-                    <span className="text-[10px] sm:text-xs font-mono font-bold text-[#888] uppercase tracking-wider block">
+                    <span className={`text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider block ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
                       {reviews[activeTab].role} • {reviews[activeTab].date}
                     </span>
                   </div>
@@ -178,14 +178,18 @@ export default function ReviewsSection() {
             )}
 
             {/* Slider navigators indicator */}
-            <div className="flex items-center justify-between mt-10 pt-4 border-t border-slate-100 flex-wrap gap-4">
+            <div className={`flex items-center justify-between mt-10 pt-4 border-t flex-wrap gap-4 ${theme === 'light' ? 'border-slate-100' : 'border-brand-gold/10'}`}>
               <div className="flex gap-1.5 overflow-x-auto max-w-[200px] sm:max-w-none py-1">
                 {reviews.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveTab(index)}
                     className={`h-2.5 rounded-full transition-all duration-300 ${
-                      activeTab === index ? 'w-8 bg-brand-navy' : 'w-2.5 bg-slate-200 hover:bg-brand-gold'
+                      activeTab === index 
+                        ? 'w-8 bg-brand-navy' 
+                        : theme === 'light' 
+                          ? 'w-2.5 bg-slate-200 hover:bg-brand-gold' 
+                          : 'w-2.5 bg-slate-700 hover:bg-brand-gold'
                     }`}
                     aria-label={`Show slide ${index + 1}`}
                   />
@@ -248,19 +252,19 @@ export default function ReviewsSection() {
                 <div className="w-12 h-12 bg-[#2E7D32]/10 border border-[#2E7D32] text-[#2E7D32] rounded-full mx-auto flex items-center justify-center">
                   <CheckCheck className="w-6 h-6 animate-bounce" />
                 </div>
-                <h4 className="font-sans font-bold text-brand-navy text-base mt-2">Remark Submitted with Grace</h4>
-                <p className="text-xs text-slate-500 mt-1">Thank you for sharing your celebration joy with us.</p>
+                <h4 className={`font-sans font-bold text-base mt-2 ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>Remark Submitted with Grace</h4>
+                <p className={`text-xs mt-1 ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>Thank you for sharing your celebration joy with us.</p>
               </div>
             ) : (
               <form onSubmit={handleReviewSubmit} className="space-y-5">
-                <h3 className="font-serif text-lg font-bold text-brand-navy flex items-center gap-2 border-b border-slate-100 pb-3">
+                <h3 className={`font-serif text-lg font-bold flex items-center gap-2 border-b pb-3 ${theme === 'light' ? 'text-brand-navy border-slate-100' : 'text-brand-gold-bright border-brand-gold/10'}`}>
                   <MessageSquareCode className="w-5 h-5 text-brand-gold" /> Write Your Celebration Story
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Name */}
                   <div>
-                    <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                    <label className={`text-[10px] font-mono font-bold uppercase tracking-wider block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                       Your Names
                     </label>
                     <input
@@ -270,36 +274,36 @@ export default function ReviewsSection() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="E.g., Vikram & Swati"
-                      className="w-full text-xs p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                      className={`w-full text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-800' : 'bg-brand-navy/50 border border-brand-gold/20 text-slate-100'}`}
                     />
                   </div>
 
                   {/* Role Type */}
                   <div>
-                    <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                    <label className={`text-[10px] font-mono font-bold uppercase tracking-wider block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                       Your Celebration Role
                     </label>
                     <select
                       id="review-role-select"
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full text-xs p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                      className={`w-full text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-800' : 'bg-brand-navy/50 border border-brand-gold/20 text-slate-100'}`}
                     >
-                      <option value="Bride">Bride</option>
-                      <option value="Groom">Groom</option>
-                      <option value="Father of Bride">Father of Bride</option>
-                      <option value="Mother of Groom">Mother of Groom</option>
-                      <option value="Matrimonial Patron">Matrimonial Patron</option>
-                      <option value="Corporate Host">Corporate Host</option>
+                      <option value="Bride" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Bride</option>
+                      <option value="Groom" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Groom</option>
+                      <option value="Father of Bride" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Father of Bride</option>
+                      <option value="Mother of Groom" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Mother of Groom</option>
+                      <option value="Matrimonial Patron" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Matrimonial Patron</option>
+                      <option value="Corporate Host" className={theme === 'dark' ? 'bg-brand-navy text-white' : ''}>Corporate Host</option>
                     </select>
                   </div>
 
                   {/* Rating Score Selection */}
                   <div>
-                    <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                    <label className={`text-[10px] font-mono font-bold uppercase tracking-wider block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                       Excellence Rating ({rating} Stars)
                     </label>
-                    <div className="flex gap-1.5 h-10 items-center justify-around bg-slate-50/70 border border-slate-200/80 rounded-xl px-2">
+                    <div className={`flex gap-1.5 h-10 items-center justify-around rounded-xl px-2 border ${theme === 'light' ? 'bg-slate-50/70 border-slate-200/80' : 'bg-brand-navy/40 border-brand-gold/20'}`}>
                       {[1, 2, 3, 4, 5].map((stars) => (
                         <button
                           key={stars}
@@ -309,8 +313,8 @@ export default function ReviewsSection() {
                           className="p-1 focus:outline-none transition-transform hover:scale-125"
                         >
                           <Star
-                            className={`w-5 h-5 ${
-                              stars <= rating ? 'fill-brand-gold text-brand-gold' : 'text-slate-300'
+                            className={`w-4.5 h-4.5 ${
+                              stars <= rating ? 'fill-brand-gold text-brand-gold' : theme === 'light' ? 'text-slate-300' : 'text-slate-600'
                             }`}
                           />
                         </button>
@@ -321,7 +325,7 @@ export default function ReviewsSection() {
 
                 {/* Comment box */}
                 <div>
-                  <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                  <label className={`text-[10px] font-mono font-bold uppercase tracking-wider block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                     Your Testimonial / Story Context
                   </label>
                   <textarea
@@ -331,7 +335,7 @@ export default function ReviewsSection() {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Describe how The Blue Eye Events staff coordinated, decorated, or catered. Your feedback keeps our design team inspired."
-                    className="w-full text-xs p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                    className={`w-full text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-800' : 'bg-brand-navy/50 border border-brand-gold/20 text-slate-100'}`}
                   />
                 </div>
 

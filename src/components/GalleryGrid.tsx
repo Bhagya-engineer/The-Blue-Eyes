@@ -8,12 +8,15 @@ export default function GalleryGrid() {
   const [zoomedImage, setZoomedImage] = useState<GalleryItem | null>(null);
 
   const categories = [
-    { label: 'All Celebrations', id: 'all' },
-    { label: 'Weddings', id: 'weddings' },
-    { label: 'Sangeet Nights', id: 'sangeet' },
-    { label: 'Exquisite Decor', id: 'decor' },
-    { label: 'Luxury Photography', id: 'photography' },
-    { label: 'Gourmet Catering', id: 'catering' },
+    { label: 'All Decor', id: 'all' },
+    { label: 'Wedding Decor', id: 'wedding' },
+    { label: 'Birthday Decor', id: 'birthday' },
+    { label: 'Engagement Decor', id: 'engagement' },
+    { label: 'Corporate Events', id: 'corporate' },
+    { label: 'Baby Shower Events', id: 'babyshower' },
+    { label: 'Anniversary Celebrations', id: 'anniversary' },
+    { label: 'Reception Decor', id: 'reception' },
+    { label: 'Haldi Decor', id: 'haldi' },
   ];
 
   const filteredItems = filter === 'all'
@@ -75,17 +78,17 @@ export default function GalleryGrid() {
               />
 
               {/* Tint overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/35 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/95 via-[#0A1128]/60 to-transparent opacity-85 group-hover:opacity-95 transition-opacity duration-300 z-10" />
 
               {/* Text Hover card */}
-              <div className="absolute inset-x-0 bottom-0 p-5 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                <span className="text-[9px] font-mono font-bold text-brand-gold uppercase tracking-widest block">
+              <div className="absolute inset-x-0 bottom-0 p-5 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
+                <span className="text-[10px] font-mono font-bold text-brand-gold uppercase tracking-widest block drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                   {item.category}
                 </span>
-                <p className="font-serif text-[15px] font-semibold text-brand-ivory tracking-wide mt-1">
+                <p className="font-serif text-[15px] font-semibold text-white tracking-wide mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
                   {item.title}
                 </p>
-                <p className="text-[10px] text-brand-ivory/70 line-clamp-1 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono">
+                <p className="text-[11px] text-gray-200 line-clamp-1 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-sans tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                   {item.description}
                 </p>
               </div>

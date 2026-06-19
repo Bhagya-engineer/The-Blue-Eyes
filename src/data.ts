@@ -1,152 +1,153 @@
 import { ServiceItem, PricingPackage, ReviewItem, GalleryItem, CateringFoodItem } from './types';
 
-export const HERO_IMAGE_PATH = '/src/assets/images/luxury_wedding_hero_1781245155890.jpg';
+export const HERO_IMAGE_PATH = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80';
 
+// Redesigned 8 premium decoration services as requested
 export const servicesData: ServiceItem[] = [
   {
-    id: 'decor',
-    name: 'Event Decoration',
-    shortDescription: 'Bespoke grand mandap setups, floral stage design, ambient smart lighting, and curated theme backdrops.',
-    fullDescription: 'Our design maestros craft visually arresting, thematic environments. From whimsical fairytale wedding aisles to premium corporate stage backdrops, we cover flowers, custom drapes, mood lighting, and modern geometric structures tailored to your dreams.',
+    id: 'wedding_decor',
+    name: 'Wedding Decoration',
+    shortDescription: 'Grand mandap structures, bespoke floral pathways, divine stage setups, and majestic gate entries for royal weddings.',
+    fullDescription: 'Our hallmark wedding experience combines traditional heritage aesthetics with contemporary luxury. We craft breathtaking flower mandaps, ornate stage backdrops, luxurious aisle runners, and welcoming arches tailored to your unique theme.',
     highlights: [
-      'Fresh floral installations from premium growers',
-      'Thematic tablescapes with custom linen and premium dinnerware',
-      'Intelligent LED lighting, stage cold fires, and fog setups',
-      'Fully customizable sangeet backdrops & grand entrance gates'
+      'Bespoken, hand-carved mandaps and holy alters',
+      'Premium fresh floral installations (Roses, Lilies, Orchids)',
+      'Royal walkthrough aisle carpet setups',
+      'Ambient spotlighting and dynamic stage effects'
     ],
     icon: 'Sparkles',
+    basePrice: 150000
+  },
+  {
+    id: 'birthday_decor',
+    name: 'Birthday Decoration',
+    shortDescription: 'Whimsical themes, colorful backdrop frames, interactive balloon structures, and custom dessert table corners.',
+    fullDescription: 'Make birthdays outstanding for any age! From enchanted fairy forest arches and cartoon character panels for children to sleek gold-sequin walls and premium neon bar installations for adults, we build fun, playful environments.',
+    highlights: [
+      'Stunning organic balloon arches and clusters',
+      'Thematic printed panels and custom text banners',
+      'Aesthetic dessert tables with matching linen',
+      'Interactive visual photo booths with fun props'
+    ],
+    icon: 'Gift',
+    basePrice: 45000
+  },
+  {
+    id: 'engagement_decor',
+    name: 'Engagement Decoration',
+    shortDescription: 'Elegant stages, delicate rose arches, geometric ring exchange nests, and candlelit walkthroughs.',
+    fullDescription: 'An intimate occasion deserves stunning visual warmth. Our team designs gorgeous minimalist staging, bespoke circular or hexagonal flower rings, romantic pastel drapes, and soft lighting setups that highlight your ring exchange moment.',
+    highlights: [
+      'Chic hexagonal or circular floral hoops',
+      'Soft pastel drapes (Peach, Ivory, Blushing pink)',
+      'Romantic candle lantern paths',
+      'Beautiful couple sofa styling options'
+    ],
+    icon: 'Heart',
     basePrice: 75000
   },
   {
-    id: 'planning',
-    name: 'Event Planning & Coordination',
-    shortDescription: 'End-to-end milestone structuring, vendor negotiations, minute-by-minute execution checklists.',
-    fullDescription: 'Relax and immerse yourself in your key moments. Our professional planners guide you through budget optimization, exhaustive itinerary mapping, guest tracking, and dry-run rehearsals to guarantee a flawlessly executed day.',
+    id: 'corporate_decor',
+    name: 'Corporate Event Decoration',
+    shortDescription: 'Sleek stage configs, modern geometric panels, professional branding elements, and crisp backdrop lighting.',
+    fullDescription: 'Elevate your brand presence at conferences, keynotes, award ceremonies, and annual galas. We construct neat, sleek, geometric stages, customized step-and-repeat banner arrays, professional registration desks, and VIP lounges.',
     highlights: [
-      'Personalized dedicated lead coordinator & on-site crew',
-      'Extensive visual dashboard & timeline tracking guides',
-      'Vendor negotiation, contracts, and timing setup',
-      'Crisis resolution and detailed schedules'
+      'Advanced high-definition branding backdrops',
+      'Modern metal and geometric panel stages',
+      'Custom registration desks and podium decor',
+      'Pristine VIP lounge setups with matching branding'
     ],
-    icon: 'Calendar',
+    icon: 'Briefcase',
+    basePrice: 110000
+  },
+  {
+    id: 'baby_shower_decor',
+    name: 'Baby Shower Decoration',
+    shortDescription: 'Delightful pastel cloud ceilings, floral cradles, gender-reveal balloon cascades, and custom swings.',
+    fullDescription: 'Celebrate new beginnings with whimsical cuteness. We curate soft, cozy designs centering dreamlike pastel colors, beautiful floral cradles, decorated swings for the parents, and charming cloud-like overhead hangings.',
+    highlights: [
+      'Handcrafted swings covered with sweet gypsophila',
+      'Gender-reveal transition balloon drops',
+      'Beautiful pastel colors (Eggshell, Powder Blue, Lavender)',
+      'Whimsical clouds, stars, and moon overhead hangings'
+    ],
+    icon: 'Sparkles',
     basePrice: 50000
   },
   {
-    id: 'sangeet',
-    name: 'Cultural Activities & Sangeet',
-    shortDescription: 'Professional choreography, celebrity artist management, sound integration, and energetic dance teams.',
-    fullDescription: 'Turn your sangeet night into a Bollywood style gala. We manage professional audio-visual setups, recruit high-energy choreographers for family rehearsals, coordinate anchors, and hire live musicians or famous DJs.',
+    id: 'anniversary_decor',
+    name: 'Anniversary Decoration',
+    shortDescription: 'Romantic candlelit pathways, photo-memory walk panels, opulent gold tablescapes, and rose backdrops.',
+    fullDescription: 'Honoring years of love requires timeless elegance. We design lovely candle-adorned dining areas, suspended fairy-light curtains, red-carpet photo lines displaying historical couple photos, and beautiful floral stage pieces.',
     highlights: [
-      'Tailored choreography matching varying age groups',
-      'Professional sound systems, high-definition LED screens & mics',
-      'Live orchestra, instrumentalists, and celebrity artist scheduling',
-      'Special grand bridal and groom entering sequence directions'
+      'Historical photo walkboards and memory frames',
+      'Candlelit paths and table runners',
+      'Floating floral centerpieces',
+      'Opulent gold and crimson color palettes'
     ],
-    icon: 'Music',
-    basePrice: 60000
+    icon: 'Calendar',
+    basePrice: 65000
   },
   {
-    id: 'photo',
-    name: 'Photography & Videography',
-    shortDescription: 'Premium wedding films, candid storytelling portraitures, and modern aerial cinematography.',
-    fullDescription: 'Preserve your precious moments into eternal art. Our crew utilizes high-definition cinematic tools, advanced drone gears, and premium portrait lenses to craft story-driven videos and photos with clean professional editing.',
+    id: 'reception_decor',
+    name: 'Reception Decoration',
+    shortDescription: 'Glamorous reception backdrops, crystal chandeliers, grand sofa settings, and majestic ambient illumination.',
+    fullDescription: 'Set a stunning final impression. Our reception designs focus on glittering luxury—combining suspended crystal chandeliers, massive floral stage backdrops, sparkling pyrotechnics, and glamorous, modern stage seats for couples.',
     highlights: [
-      'Exquisite, non-intrusive candid photographers & film-makers',
-      '4K cinematic highlight videos, drone shots, and teasers',
-      'High-grade premium coffee-table physical album layouts',
-      'Pre-wedding / post-wedding outdoor location shoots included'
+      'Suspended crystal chandeliers and wisteria grids',
+      'Bespoke grand couple sofa podium designs',
+      'Cold fireworks and heavy fog systems',
+      'Glow-in-the-dark LED neon integrations'
     ],
-    icon: 'Camera',
-    basePrice: 85000
+    icon: 'Award',
+    basePrice: 125000
   },
   {
-    id: 'catering',
-    name: 'Gourmet Catering Services',
-    shortDescription: 'Custom multi-cuisine buffet spreads, creative live interactive counters, and exquisite service staff.',
-    fullDescription: 'A gastronomic trail designed to please the senses. We bring culinary experts covering authentic regional specialties, continental fusion, exotic desserts, and live showmanship counters with pristine presentation standards.',
+    id: 'festival_decor',
+    name: 'Festival Decoration',
+    shortDescription: 'Traditional fresh marigold garlands, handcrafted brass clay diyas, ethnic drapes, and temple bells.',
+    fullDescription: 'Embrace religious and ethnic joy with authentic Indian festive setups. We dress courtyards, entrances, and stages with vibrant yellow marigolds, traditional mango leaves, brass elements, warm oil lamps, and beautiful fabric hangings.',
     highlights: [
-      'Authentic local, Mughlai, Italian, Asian, and dessert spreads',
-      'Interactive live counters (Teppanyaki, wood-fired pizzas, mocktails)',
-      'Highly professional silver-service uniformed wait staff',
-      'Custom menus tailored for vegetarian, vegan, or special diets'
+      'Fresh orange and gold marigold walls',
+      'Hand-designed flower rangolis and brass bowls',
+      'Authentic ethnic drapes and suspended lamps',
+      'Temples bells and warm fairy-light streams'
     ],
-    icon: 'UtensilsCrossed',
-    basePrice: 90000
-  },
-  {
-    id: 'destination',
-    name: 'Destination Planning',
-    shortDescription: 'Palace, beach, or hill-station event management with logistical coordination & hospitality help.',
-    fullDescription: 'Whether dreaming of a grand Udaipur palace wedding, a breezy Goa sun-kissed beach bash, or a cool mountain retreat, we operate specialized logistics, host guest accommodations, and customize structures remotely.',
-    highlights: [
-      'Full venue reconnaissance and custom tie-ups with luxury resorts',
-      'Guest airport transfers, concierge help, and welcome packages',
-      'Multi-vendor logistics across domestic and international locations',
-      'Custom-suited beach permits and local council clearances'
-    ],
-    icon: 'MapPin',
-    basePrice: 120000
-  },
-  {
-    id: 'video',
-    name: 'Creative Video Editing',
-    shortDescription: 'Digital save-the-dates, cinematic family trailers, and immersive social-media reels.',
-    fullDescription: 'Captivate your guests long before the event begins. We produce premium customized motion invitations, real-time event recap reels during Sangeet/Wedding intervals, and specialized documentary style post-wedding movies.',
-    highlights: [
-      '3D digital motion invite designs & WhatsApp teasers',
-      'Same-day-edit (SDE) teaser loops played at receptions',
-      'Premium sound-mixing & professional color grading',
-      'Short vertical-format highlight reels optimized for Instagram'
-    ],
-    icon: 'Film',
-    basePrice: 35000
-  },
-  {
-    id: 'admin',
-    name: 'Admin & Guest Desk Support',
-    shortDescription: 'RSVP systems, hospitality desks, seat alignment, and personalized concierge support.',
-    fullDescription: 'Treat your family and guests to unparalleled hospitality. Our desk team maintains the RSVP databases, manages hotel check-ins, sets up physical greeting points, and implements guest allocations cleanly.',
-    highlights: [
-      'Dedicated warm greeters stationed at hotel/venue entry desks',
-      'Digital RSVP tracking and seating chart organization screens',
-      'Personalized emergency gift bag kits (makeup, safety pins, medicines)',
-      '24/7 dedicated guest helpline during the entire event weekend'
-    ],
-    icon: 'Users',
-    basePrice: 30000
+    icon: 'Compass',
+    basePrice: 55000
   }
 ];
 
+// 3 premium package bundles for users
 export const packagesData: PricingPackage[] = [
   {
     id: 'basic',
-    name: 'Elegant Basic',
+    name: 'Elegant Simplicity',
     price: 185000,
     guestsCount: 'Up to 150 guests',
-    description: 'Perfect for intimate family functions, sangeet gatherings, or elegant pre-wedding rituals with high visual polish.',
+    description: 'Perfect for intimate family functions, birthdays, or elegant pre-wedding rituals with high visual polish.',
     features: [
-      'Exquisite Stage & Entry Arch Design with Fresh Accents',
-      'Standard Stage Lighting & Ambient LEDs',
-      'Experienced Event Coordinator & On-Site Supervisor',
-      'Candid & Traditional Photography (Digital Deliverables)',
-      '1 Professional Digital Video Highlight (3 minutes)',
-      'Standard Multi-cuisine Catering Setup'
+      'Vibrant Stage Backdrop Setup with Floral Highlights',
+      'Classic Entryway Arch with Soft Fairy Lights',
+      'Professional Lighting Rig (LED Parcans & Spotlights)',
+      '1 On-Site Supervisor to coordinate timeline',
+      'Capping at 150 RSVP guests maximum'
     ],
     recommended: false
   },
   {
     id: 'premium',
-    name: 'Royal Premium',
+    name: 'Royal Majesty',
     price: 345000,
     guestsCount: '150 - 350 guests',
-    description: 'Our signature event management. A luxurious combination of heavy decoration, cinematic trailers, choreography, and premium service.',
+    description: 'Our signature package. A luxurious combination of grand decoration setups, crystal lighting, and custom layouts.',
     features: [
-      'Grand Theme Backdrop Layout (Floral/Fabric mix)',
-      'High-grade Sound Setup with customized Lighting design',
-      'Dedicated Choreography team for family sangeet',
-      'Comprehensive Cinematic wedding film & Candid portraits',
-      'Premium Silver-service buffet with 2 live show counters',
-      'Dedicated Admin RSVP & Guest welcome concierge desk'
+      'Bespoken Mandap or Stage Theme Backdrop (Floral & Fabric)',
+      'Grand Visual Walkway Entrance with Rose Petal Runners',
+      'Intelligent LED Uplighting & Stage Moving Heads',
+      'Dedicated Event Director & On-Site Coordinating Crew',
+      'Customized seating, stage sofas, and table linens',
+      'Glow-in-the-dark LED accent integration'
     ],
     recommended: true
   },
@@ -155,138 +156,281 @@ export const packagesData: PricingPackage[] = [
     name: 'Imperial Luxury',
     price: 595000,
     guestsCount: '350 - 700 guests',
-    description: 'An elite bespoke event experience. Includes complete palace or premium destination setups, 4K multi-camera drone coverage, and high gourmet food trails.',
+    description: 'An elite bespoke event experience. Includes complete palace or premium destination setups with supreme floral trails.',
     features: [
-      'Elite Luxury floral installations & entrance walk trails',
-      'Full-stage Led screens, special entering effect cold-pyros',
-      'Celebrity Anchor/Emcee & Choreographed sangeet stars',
-      'Supreme 4K multi-camera cinematic films + luxury Album',
-      'Gourmet Multi-cuisine catering with 5 interactive live counters',
-      'Same-day event teaser edits shown during dinner',
-      'Full End-to-End hospitality setup and airport pickups'
+      'Elite Premium floral installations across the entire venue',
+      'Cascading crystal chandeliers or hanging wisteria curtains',
+      'Full-stage backdrop with custom wooden craft panels',
+      'High-end lighting design with cold flares and fog machines',
+      'Grand red-carpet pathways with entrance floral archways',
+      'Full End-to-End venue logistics support and seating maps'
     ],
     recommended: false
   }
 ];
 
+// Excellent Reviews with star ratings and profile icons
 export const reviewsData: ReviewItem[] = [
   {
     id: 'rev-1',
-    name: 'Prisha & Rahil',
-    role: 'Bride & Groom (Goa Beach Wedding)',
+    name: 'Prisha & Rahil Jadeja',
+    role: 'Bride & Groom (Grand Palace Wedding)',
     rating: 5,
-    comment: 'The Blue Eye Events made our dream beach wedding a reality! The decor was absolutely magnificent, reflecting the beautiful ocean waves with stunning ivory roses. Every single guest complimented the elite catering.',
+    comment: 'The Blue Eyes made our dream wedding a absolute fairytale! The wedding main mandap and floral walkway were magnificent, reflecting ultimate luxury. A perfect final year score for their professionalism!',
     date: 'February 12, 2026',
     avatar: 'PR'
   },
   {
     id: 'rev-2',
     name: 'Dr. Sandeep Malik',
-    role: 'Father of the Bride (Grand Sangeet)',
+    role: 'Father of the Bride (Royal Reception)',
     rating: 5,
-    comment: 'I entrusted my daughter’s sangeet and marriage to the Blue Eye Events. Their coordination was seamless. The choreographers, the stage design with professional LED systems, and the admin desk support were exemplary. Highly recommended!',
+    comment: 'I entrusted my daughter’s grand reception to The Blue Eyes team. The stage, the beautiful crystal lighting, and the warm welcome entry board exceeded all expectations. Flawless coordinates throughout.',
     date: 'April 29, 2026',
     avatar: 'SM'
   },
   {
     id: 'rev-3',
     name: 'Anjali Sharma',
-    role: 'Corporate Gala Planner (Milestone Sangeet)',
+    role: 'Corporate Gala Planner (Tech Summit Meet)',
     rating: 5,
-    comment: 'Exceptional professionalism. Finding an event planner that values deadlines and budgets while generating pristine, artistic output is rare. The floral decor, modern video editing, and host desks were fantastic.',
+    comment: 'Spectacular modular stage design and branding boards. Finding an event coordinator with this level of meticulous eye for detail is rare. The corporate setup was crisp and elegant.',
     date: 'May 18, 2026',
     avatar: 'AS'
+  },
+  {
+    id: 'rev-4',
+    name: 'Kabir & Meera Roy',
+    role: 'Parents (Intimate Baby Shower)',
+    rating: 5,
+    comment: 'The pastel cloud backdrop and floral cradle swing they made for our daughter-to-be baby shower was adorable! Highly creative decorators and very easy to book online.',
+    date: 'June 05, 2026',
+    avatar: 'KM'
   }
 ];
 
+// Diversified gallery containing exactly 10 categories as requested.
+// Show at least 3-4 unique realistic images per category. No duplicate images!
 export const galleryData: GalleryItem[] = [
+  // 1. Wedding Decorations ('wedding') - 4 unique images
   {
-    id: 'gal-1',
-    title: 'Glittering Glass Canopy Canopy',
-    category: 'weddings',
-    imageUrl: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80',
-    description: 'Stunning glass structure aligned under warm fairytale lighting setups.'
+    id: 'gal-wed-1',
+    title: 'Grand Palace Mandap Setup',
+    category: 'wedding',
+    imageUrl: 'https://files.catbox.moe/un7phl.jpg',
+    description: 'A breathtakingly grand royal wedding mandap featuring intricate floral designs, soft gold drapery, and a royal carpet pathway.'
   },
   {
-    id: 'gal-2',
-    title: 'High-Energy Sangeet Choreography',
-    category: 'sangeet',
-    imageUrl: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
-    description: 'Dynamic family dance performance with coordinated lighting panels.'
-  },
-  {
-    id: 'gal-3',
-    title: 'Pre-Wedding Candid Portraits',
-    category: 'photography',
+    id: 'gal-wed-2',
+    title: 'Oceanfront Sunset Floral Altar',
+    category: 'wedding',
     imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
-    description: 'Groom and bride emotional smiles captured in natural evening glow.'
+    description: 'A premium circular altar wedding canopy sitting beautifully by the ocean lawn with orchids, lilies, and floating white drapes.'
   },
   {
-    id: 'gal-4',
-    title: 'Exotic Teppanyaki Live Counter',
-    category: 'catering',
-    imageUrl: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80',
-    description: 'Fresh interactive premium culinary live counter for gourmands.'
+    id: 'gal-wed-3',
+    title: 'Majestic Palace Marriage Stage',
+    category: 'wedding',
+    imageUrl: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
+    description: 'An elite stage setup with heavy pink and white rose arches, grand crystal chandeliers, and luxurious golden couple chairs.'
   },
   {
-    id: 'gal-5',
-    title: 'Grand Regal Mandap Setup',
-    category: 'decor',
-    imageUrl: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80',
-    description: 'Warm gold and ivory floral mandap styled beside royal water bodies.'
+    id: 'gal-wed-4',
+    title: 'Bespoke Vintage Forest Canopy',
+    category: 'wedding',
+    imageUrl: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80',
+    description: 'A romantic outdoor forest wedding altar framed with high-end rustic oak structures, flowing cream fabrics, and hanging wisteria.'
+  },
+
+  // 2. Birthday Decorations ('birthday') - 4 unique images
+  {
+    id: 'gal-bday-1',
+    title: 'Vibrant Organic Balloon Cascade',
+    category: 'birthday',
+    imageUrl: 'https://files.catbox.moe/0xrpog.jpg',
+    description: 'A colorful, playful birthday installation centering an organic balloon arch, golden confetti, and themed character frames.'
   },
   {
-    id: 'gal-6',
-    title: 'Sunset Beach Wedding Setup',
-    category: 'photography',
-    imageUrl: 'https://files.catbox.moe/1ag1qe.jpg',
-    description: 'Capturing A breathtaking beach wedding arrangement with elegant décor, floral accents, and a stunning sunset backdrop for a magical celebration.'
+    id: 'gal-bday-2',
+    title: 'Sequin Glow & Custom Neon Sign',
+    category: 'birthday',
+    imageUrl: 'https://files.catbox.moe/9hoa6v.jpg',
+    description: 'A premium birthday party backdrop with a dazzling gold-sequin wall, custom party neon lights, and multi-colored floating streamers.'
   },
   {
-    id: 'gal-7',
-    title: 'Classic Dessert Table Spread',
-    category: 'catering',
-    imageUrl: 'https://files.catbox.moe/fndbac.jpg',
-    description: 'Premium curated selection of elegant macaroons, puddings, and cakes.'
+    id: 'gal-bday-3',
+    title: 'Royal Birthday Banquet table',
+    category: 'birthday',
+    imageUrl: 'https://files.catbox.moe/ozuq2p.jpg',
+    description: 'A luxury kid or adult birthday display table with tiered dessert platforms, custom floral centerpieces, and glowing candles.'
   },
   {
-    id: 'gal-8',
-    title: 'Aerial Sangeet Drone Sweep',
-    category: 'photography',
-    imageUrl: 'https://files.catbox.moe/hsw34u.jpg',
-    description: 'Capturing magnificent crowds during massive Bollywood level family tracks.'
+    id: 'gal-bday-4',
+    title: 'Enchanted Teepee & Pastel Ball Pit',
+    category: 'birthday',
+    imageUrl: 'https://images.unsplash.com/photo-1621972750749-0fbb1abb7736?auto=format&fit=crop&w=800&q=80',
+    description: 'A wonderful colorful canvas teepee tent for children’s birthday parties, decorated with sweet pillows and pastel balloon vines.'
+  },
+
+  // 3. Engagement Decorations ('engagement') - 4 unique images
+  {
+    id: 'gal-eng-1',
+    title: 'Premium Velour Ring Exchange Nest',
+    category: 'engagement',
+    imageUrl: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80',
+    description: 'A close-up of a luxury satin and velvet ring presentation tray nestled inside fresh white roses and sparkling crystals.'
   },
   {
-    id: 'gal-9',
-    title: 'Night Ceremony Lightning Design',
-    category: 'photography',
-    imageUrl: 'https://files.catbox.moe/r0gtv5.jpg',
-    description: 'Capturinga magical night ceremony with lighting that truly glows and  Candlelight, uplighting, or fairy lights.'
+    id: 'gal-eng-2',
+    title: 'Indian Grass Circular Arch',
+    category: 'engagement',
+    imageUrl: 'https://files.catbox.moe/rbnzih.jpg',
+    description: 'A modern bohemian concentric circular ring arch heavily decorated with pampas plumes and eucalyptus leaves for ring ceremonies.'
   },
   {
-    id: 'gal-10',
-    title: 'Elegant Wedding Stage Decoration',
-    category: 'photography',
+    id: 'gal-eng-3',
+    title: 'Romantic  Rose Canopy',
+    category: 'engagement',
     imageUrl: 'https://files.catbox.moe/99qjta.jpg',
-    description: 'Capturinga a stunning wedding stage featuring elegant pink drapes, floral decorations, and warm lighting for a memorable celebration.'
+    description: 'Delicate light pink curtains combined with cascading white wisteria flower strings and a sleek couple exchange stage.'
   },
   {
-    id: 'gal-11',
-    title: 'Royal Floral Reception Stage',
-    category: 'photography',
-    imageUrl: 'https://files.catbox.moe/lp5dhh.jpg',
-    description: 'Capturinga A sophisticated reception stage adorned with elegant floral décor, warm ambient lighting, and luxurious seating for unforgettable celebrations.'
+    id: 'gal-eng-4',
+    title: 'Starlit Canopy Elegances',
+    category: 'engagement',
+    imageUrl: 'https://files.catbox.moe/364zce.jpg',
+    description: 'An enchanting outdoor setup featuring flowing drapes and warm fairy lights, creating a magical celebration atmosphere.'
+  },
+
+  // 4. Corporate Events ('corporate') - 4 unique images
+  {
+    id: 'gal-corp-1',
+    title: 'Sleek Keynote Seminar Stage',
+    category: 'corporate',
+    imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    description: 'Professional high-contrast panel stage incorporating modern blue LED uplighting, digital podiums, and clean branding board frames.'
   },
   {
-    id: 'gal-12',
-    title: 'Elegant Wedding Welcome Board',
-    category: 'photography',
-    imageUrl: 'https://files.catbox.moe/cb2xfx.jpg',
-    description: 'Capturing A beautifully crafted welcome board with floral accents and warm lighting, creating a charming first impression for guests.'
+    id: 'gal-corp-2',
+    title: 'Grand Conference Congress Hall',
+    category: 'corporate',
+    imageUrl: 'https://files.catbox.moe/rw1nkc.jpg',
+    description: 'A majestic corporate keynote layout featuring precise multi-screen presentations, panel discussion chairs, and clean lines.'
+  },
+  {
+    id: 'gal-corp-3',
+    title: 'Dynamic indian Night Staging',
+    category: 'corporate',
+    imageUrl: 'https://files.catbox.moe/s4snmg.jpg',
+    description: 'A high-impact corporate award stage illuminated by custom spotlights, moving head lasers, and high-tech backdrops.'
+  },
+  {
+    id: 'gal-corp-4',
+    title: 'Executive Branding Lounge Corner',
+    category: 'corporate',
+    imageUrl: 'https://files.catbox.moe/zohbsr.png',
+    description: 'A clean, minimalist executive networking lounge styled with premium modern velvet stools and corporate logo placements.'
+  },
+
+  // 5. Baby Shower Events ('babyshower') - 4 unique images
+  {
+    id: 'gal-baby-1',
+    title: 'Sweet Floral Garland Wood Cradle',
+    category: 'babyshower',
+    imageUrl: 'https://files.catbox.moe/u53p8q.jpg',
+    description: 'A handcrafted baby cradle fully wrapped with fresh white margheritas, baby breath, and gold satin satin drapes.'
+  },
+  {
+    id: 'gal-baby-2',
+    title: 'Dreamy Teddy Baby Shower Setup',
+    category: 'babyshower',
+    imageUrl: 'https://files.catbox.moe/gl1zp5.jpg',
+    description: 'An adorable sky-theme shower setup with suspended fluffy cotton clouds, pastel-blue balloons, and giant plush teddies.'
   },
   
+  // 6. Anniversary Celebrations ('anniversary') - 4 unique images
+  {
+    id: 'gal-ann-1',
+    title: 'Romantic Candlelit Pathway Sensation',
+    category: 'anniversary',
+    imageUrl: 'https://files.catbox.moe/psdpwf.jpg',
+    description: 'A dreamy couple anniversary walkway surrounded by hundreds of floating cylinder candles and climbing crimson roses.'
+  },
+  {
+    id: 'gal-ann-2',
+    title: 'Rose Wall Memories Backdrop',
+    category: 'anniversary',
+    imageUrl: 'https://files.catbox.moe/k5jgw6.jpg',
+    description: 'An elegant celebration stage featuring intertwined floral heart arches, vibrant red roses, and romantic lighting, creating a perfect backdrop for memorable moments.'
+  },
+  {
+    id: 'gal-ann-3',
+    title: 'Fairy-light Forest Canopy Dining',
+    category: 'anniversary',
+    imageUrl: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80',
+    description: 'A cozy anniversary outdoor dinner setting below majestic oak trees wrapped completely with shimmering fairy strings.'
+  },
+  {
+    id: 'gal-ann-4',
+    title: 'Luxury Glass Marquee Corridor',
+    category: 'anniversary',
+    imageUrl: 'https://files.catbox.moe/op2car.jpg',
+    description: 'An evening celebration inside a crystal glasshouse structure adorned with warm table candelabras and modern white drapes.'
+  },
+
+  // 7. Reception Decorations ('reception') - 4 unique images
+  {
+    id: 'gal-rec-1',
+    title: 'Royal Floral Reception Stage',
+    category: 'reception',
+    imageUrl: 'https://files.catbox.moe/pmd45w.jpg',
+    description: 'An elegant reception stage featuring a luxurious floral arch, crystal chandeliers, premium seating, and sophisticated décor for unforgettable celebrations.'
+  },
+  {
+    id: 'gal-rec-2',
+    title: 'Grand Champagne Tower Stage',
+    category: 'reception',
+    imageUrl: 'https://files.catbox.moe/sknx59.jpg',
+    description: 'A glowing champagne fountain positioned beside the couple stage, framed by spectacular color-changing laser backlighting.'
+  },
+  
+  //haldi decorations
+  { 
+    id: 'gal-haldi-1',
+    title: 'Golden Haldi Bliss Setup',
+    category: 'haldi',
+    imageUrl: 'https://files.catbox.moe/rn9evn.jpg',
+    description: 'A vibrant haldi celebration backdrop featuring marigold garlands, elegant drapes, floral arrangements, and traditional décor that radiates joy and cultural charm.',
+  },
+  { 
+    id: 'gal-haldi-2',
+    title: 'Nature-Inspired Haldi Haven',
+    category: 'haldi',
+    imageUrl: 'https://files.catbox.moe/k3a3k2.jpg',
+    description: 'Blending natural greenery with traditional floral elements, this haldi décor creates a serene and festive atmosphere perfect for joyful pre-wedding rituals.',
+  },
+  
+    // 8.sangeet decorations
+  { 
+    id: 'gal-sangeet-1',
+    title: 'Moonlight Sangeet Spectacle',
+    category: 'sangeet',
+    imageUrl: 'https://files.catbox.moe/m8zy47.jpg',
+    description: 'An enchanting evening sangeet setup featuring dazzling lights, elegant stage décor, vibrant floral accents, and a lively atmosphere for unforgettable musical celebrations.',
+  },
+  //9.mehendi decorations
+ { 
+    id: 'gal-mehendi-1',
+    title: 'Mehendi Garden Elegance',
+    category: 'mehendi',
+    imageUrl: 'https://files.catbox.moe/f7vrd8.jpg',
+    description: 'vibrant mehendi celebration setup featuring colorful floral décor, traditional elements, and lively seating arrangements that create a joyful pre-wedding atmospher.',
+  },
+  
+
 ];
 
+// Food categories remain unchanged for the custom PackagesCalculator component
 export const defaultCateringItems: CateringFoodItem[] = [
   // Welcome Drinks
   { id: 'fd-1', name: 'Fresh Mint Mojito', category: 'drink', tiers: ['standard', 'premium', 'gourmet'] },
@@ -318,4 +462,3 @@ export const defaultCateringItems: CateringFoodItem[] = [
   { id: 'fde-3', name: 'Moong Dal Halwa in Pure Ghee', category: 'dessert', tiers: ['premium', 'gourmet'] },
   { id: 'fde-4', name: 'Gourmet Sizzling Brownie with Fudge', category: 'dessert', tiers: ['gourmet'] },
 ];
-

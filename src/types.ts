@@ -31,7 +31,7 @@ export interface ReviewItem {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'all' | 'weddings' | 'decor' | 'photography' | 'catering' | 'sangeet';
+  category: string;
   imageUrl: string;
   description: string;
 }
@@ -51,6 +51,7 @@ export interface BookingRequest {
   bookingRef: string;
   timestamp: string;
   customMenu?: string[]; // Optional user custom food selections
+  eventLocation?: string; // Optional user event location
 }
 
 export interface CateringFoodItem {

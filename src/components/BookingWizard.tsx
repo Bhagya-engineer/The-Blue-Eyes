@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, Gift, Users, Mail, Phone, UserCheck, CheckCircle2, Ticket, Printer, ArrowRight } from 'lucide-react';
+import { X, Calendar, Gift, Users, Mail, Phone, UserCheck, CheckCircle2, Ticket, Printer, ArrowRight, MapPin } from 'lucide-react';
 import { BookingRequest } from '../types';
 import { db, handleFirestoreError, OperationType } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
@@ -26,6 +26,7 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
   const [date, setDate] = useState('');
   const [eventType, setEventType] = useState('Marriage');
   const [guests, setGuests] = useState(150);
+  const [location, setLocation] = useState('');
   const [customNotes, setCustomNotes] = useState('');
 
   // Sourced calculation params
@@ -60,8 +61,8 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !email || !phone || !date) {
-      alert('Kindly complete your name, email, contact number, and selected event date.');
+    if (!name || !email || !phone || !date || !location) {
+      alert('Kindly complete your name, email, contact number, event location, and selected event date.');
       return;
     }
 
@@ -89,6 +90,7 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
         day: 'numeric',
       }),
       customMenu: menuItems,
+      eventLocation: location,
     };
 
     const submitToFirestore = async () => {
@@ -106,7 +108,8 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
           estimatedCost: Number(newBooking.estimatedCost),
           bookingRef: newBooking.bookingRef,
           timestamp: newBooking.timestamp,
-          customMenu: newBooking.customMenu || []
+          customMenu: newBooking.customMenu || [],
+          eventLocation: newBooking.eventLocation || ''
         });
 
         // Save persistent fallback to localStorage
@@ -219,6 +222,12 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
                   <p className="text-[#888] font-mono uppercase text-[9px] tracking-wide">Guest Attendance size</p>
                   <p className="font-bold text-slate-800 text-sm mt-0.5">{confirmedBooking.guestCount} RSVP guests planned</p>
                 </div>
+                {confirmedBooking.eventLocation && (
+                  <div className="sm:col-span-2">
+                    <p className="text-[#888] font-mono uppercase text-[9px] tracking-wide">Venue Location</p>
+                    <p className="font-bold text-brand-navy text-sm mt-0.5">{confirmedBooking.eventLocation}</p>
+                  </div>
+                )}
                 <div className="sm:col-span-2">
                   <p className="text-[#888] font-mono uppercase text-[9px] tracking-wide">Experience baseline selected</p>
                   <p className="font-bold text-slate-800 text-sm mt-0.5">
@@ -397,6 +406,27 @@ export default function BookingWizard({ isOpen, onClose, initialData }: BookingW
                     max="2000"
                     value={guests}
                     onChange={(e) => setGuests(Number(e.target.value))}
+                    className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                  />
+                </div>
+              </div>
+
+              {/* Event Venue Location */}
+              <div className="sm:col-span-2">
+                <label className="text-[10px] font-mono font-bold text-brand-navy uppercase tracking-wider block mb-1.5">
+                  Event Venue Location *
+                </label>
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                    <MapPin className="w-4 h-4 text-brand-gold font-bold" />
+                  </span>
+                  <input
+                    type="text"
+                    id="book-location-input"
+                    required
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="E.g., Grand Taj Resort Gardens, Jodhpur, Rajasthan"
                     className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-gold"
                   />
                 </div>

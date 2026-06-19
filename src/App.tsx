@@ -32,7 +32,9 @@ import {
   Facebook,
   Youtube,
   Send,
-  CheckCircle2
+  CheckCircle2,
+  Gift,
+  Briefcase
 } from 'lucide-react';
 
 // Icon mapper for simple dynamic resolution
@@ -45,12 +47,17 @@ const ICON_MAP: Record<string, React.ComponentType<any>> = {
   MapPin,
   Film,
   Users,
+  Gift,
+  Heart,
+  Briefcase,
+  Award,
+  Compass,
 };
 
 export default function App() {
   // Global States
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>(['decor', 'planning', 'photo']);
+  const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>(['wedding_decor', 'engagement_decor']);
   const [activeServiceDetail, setActiveServiceDetail] = useState<ServiceItem | null>(null);
 
   const handleToggleTheme = () => {
@@ -177,20 +184,20 @@ export default function App() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-none text-brand-ivory">
-              Creating <span className="text-brand-gold font-serif">Unforgettable</span> Memories
+              Transforming Your Special Moments into <span className="text-brand-gold font-serif">Unforgettable</span> Memories.
             </h1>
 
             <p className="text-sm sm:text-lg text-brand-ivory/85 leading-relaxed max-w-2xl font-sans tracking-wide">
-              From majestic palace marriages to energetic family sangeets, gourmet menu pathways, and digital cinematic photography—we structure every celebrate milestone with absolute visual perfection.
+              The Blue Eyes serves as a modern event planning and decoration platform. We assist customers in discovering pristine decoration ideas, custom layouts, and securing premium bookings effortlessly.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
                 id="hero-book-btn"
                 onClick={handleOpenGeneralBooking}
-                className="px-8 py-4 bg-brand-gold text-brand-navy font-mono text-xs font-bold tracking-wider rounded-full hover:bg-brand-gold-bright hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 uppercase flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-[#F5D76E] text-[#0B1633] font-mono text-xs font-bold tracking-wider rounded-full hover:bg-[#FFF38F] hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 uppercase flex items-center justify-center gap-2 cursor-pointer"
               >
-                BOOK EXQUISITE EVENT
+                Book Event
                 <ArrowRight className="w-4 h-4" />
               </button>
               
@@ -199,9 +206,9 @@ export default function App() {
                 onClick={() => {
                   document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-8 py-4 bg-transparent border-2 border-brand-ivory/60 hover:border-brand-gold text-brand-ivory hover:text-brand-gold font-mono text-xs font-bold tracking-wider rounded-full transition-all duration-300 uppercase"
+                className="px-8 py-4 bg-transparent border-2 border-brand-ivory/60 hover:border-brand-gold text-brand-ivory hover:text-brand-gold font-mono text-xs font-bold tracking-wider rounded-full transition-all duration-300 uppercase cursor-pointer"
               >
-                EXPLORE DELIVERABLES
+                Explore Services
               </button>
             </div>
 
@@ -296,8 +303,84 @@ export default function App() {
         </div>
       </section>
 
+      {/* Statistics Section */}
+      <section className="py-12 bg-brand-navy border-y border-brand-gold/15 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,215,110,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-2">
+              <span className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5D76E] block">1,500+</span>
+              <span className="text-[10px] font-mono tracking-widest text-[#B8C4E0] uppercase block">Decorations Completed</span>
+            </div>
+            <div className="space-y-2">
+              <span className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5D76E] block">15+</span>
+              <span className="text-[10px] font-mono tracking-widest text-[#B8C4E0] uppercase block">Project Directors</span>
+            </div>
+            <div className="space-y-2">
+              <span className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5D76E] block">5+</span>
+              <span className="text-[10px] font-mono tracking-widest text-[#B8C4E0] uppercase block">Active Metros & States</span>
+            </div>
+            <div className="space-y-2">
+              <span className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F5D76E] block">100%</span>
+              <span className="text-[10px] font-mono tracking-widest text-[#B8C4E0] uppercase block">Delivery Rating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Event Categories Section */}
+      <section id="categories" className={`py-20 relative border-b border-brand-gold/15 transition-colors duration-300 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-bg'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold block">
+              SIGNATURE CELEBRATION THEMES
+            </span>
+            <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 leading-tight ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>
+              A Wide Spectrum of Joyous Categories
+            </h2>
+            <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
+            <p className={`text-sm sm:text-base ${theme === 'light' ? 'text-slate-600' : 'text-slate-200'}`}>
+              The Blue Eyes specializes in custom decoration architectures tailored precisely for every milestone celebration. Click any card to instantly plan or view gallery.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Wedding Decoration', desc: 'Divine drapes, mandaps, grand royal walkways, and palace alters.', image: 'https://files.catbox.moe/un7phl.jpg', anchor: '#services' },
+              { title: 'Birthday Decoration', desc: 'Vibrant custom backgrounds, themed organic balloon cascades.', image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80', anchor: '#services' },
+              { title: 'Engagement Decoration', desc: 'Elegant rings framing, pastel linens, and candlelit walk paths.', image: 'https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=400&q=80', anchor: '#services' },
+              { title: 'Corporate Events', desc: 'Sleek modular keynote staging, branding backdrop boards.', image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80', anchor: '#services' },
+              { title: 'Baby Shower Decor', desc: 'Soft pastel baby clouds ceiling, sweet gypsophila cradles.', image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=400&q=80', anchor: '#services' },
+              { title: 'Anniversary Decor', desc: 'Romantic memories walkway, gold tablescapes, crimson walls.', image: 'https://files.catbox.moe/psdpwf.jpg', anchor: '#services' },
+              { title: 'Reception Decor', desc: 'Suspended wisteria trails, glamorous seating, fog effects.', image: 'https://files.catbox.moe/sknx59.jpg', anchor: '#services' },
+              { title: 'Haldi Decoration', desc: 'Vibrant marigold garlands, elegant yellow drapes, and traditional seating.', image: 'https://files.catbox.moe/rn9evn.jpg', anchor: '#services' }
+            ].map((cat, idx) => (
+              <div key={idx} className={`border border-brand-gold/15 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}>
+                <div>
+                  <div className="relative h-44 overflow-hidden">
+                    <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent z-10" />
+                    <span className="absolute bottom-3 left-3 text-white font-serif text-sm font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] z-20">{cat.title}</span>
+                  </div>
+                  <div className="p-5">
+                    <p className={`text-[11.5px] leading-relaxed font-sans ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>{cat.desc}</p>
+                  </div>
+                </div>
+                <div className="p-5 pt-0">
+                  <a href={cat.anchor} className={`text-[10px] font-mono font-bold hover:text-brand-gold uppercase tracking-wider flex items-center justify-between border-t pt-3 ${theme === 'light' ? 'text-brand-navy border-slate-100' : 'text-slate-200 border-brand-gold/10'}`}>
+                    <span>EXPLORE THEME</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-brand-gold" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 4. Services Section */}
-      <section id="services" className="py-20 bg-[#FAF7F4] relative border-b border-brand-gold/15">
+      <section id="services" className={`py-20 relative border-b border-brand-gold/15 transition-colors duration-300 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-bg'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
@@ -305,11 +388,11 @@ export default function App() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
               OUR LUXURY PORTFOLIO OPTIONS
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight">
+            <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 leading-tight ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>
               Bespoke Event Capabilities
             </h2>
             <div className="w-16 h-1 bg-brand-gold mx-auto my-5 rounded-full" />
-            <p className="text-slate-600 text-sm sm:text-base">
+            <p className={`text-sm sm:text-base ${theme === 'light' ? 'text-slate-600' : 'text-slate-200'}`}>
               We manage weddings, family sangeets, catering, and destination planning. Tap cards to see deep specifications and live pricing elements.
             </p>
           </div>
@@ -324,12 +407,12 @@ export default function App() {
                 <div
                   key={service.id}
                   id={`service-card-${service.id}`}
-                  className="bg-brand-white border border-brand-gold/15 hover:border-brand-gold/45 rounded-2xl p-6.5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 group"
+                  className={`border border-brand-gold/15 hover:border-brand-gold/45 rounded-2xl p-6.5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all duration-300 group ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}
                 >
                   <div>
                     {/* Top Icon Block and status */}
                     <div className="flex justify-between items-start mb-4.5">
-                      <div className="w-10 h-10 bg-brand-navy/5 border border-brand-gold/30 rounded-xl flex items-center justify-center text-brand-gold group-hover:bg-brand-navy group-hover:text-brand-gold-bright transition-colors">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${theme === 'light' ? 'bg-brand-navy/5 border-brand-gold/30 text-brand-gold group-hover:bg-brand-navy group-hover:text-brand-gold-bright' : 'bg-brand-navy/30 border-brand-gold/20 text-brand-gold group-hover:bg-brand-navy group-hover:text-brand-gold-bright'}`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
                       
@@ -338,24 +421,26 @@ export default function App() {
                         className={`text-[9px] font-mono px-2.5 py-1 rounded font-bold transition-colors cursor-pointer ${
                           isSelected
                             ? 'bg-[#EBF5EE] text-[#2E7D32] border border-[#2E7D32]/20'
-                            : 'bg-brand-navy/5 text-brand-navy border border-brand-navy/15 hover:bg-brand-gold hover:text-brand-navy'
+                            : theme === 'light'
+                              ? 'bg-brand-navy/5 text-brand-navy border border-brand-navy/15 hover:bg-brand-gold hover:text-brand-navy'
+                              : 'bg-brand-gold/10 text-brand-gold border border-brand-gold/25 hover:bg-brand-gold hover:text-brand-navy'
                         }`}
                       >
                         {isSelected ? '✓ SELECTED' : '+ ADD TO CALC'}
                       </button>
                     </div>
 
-                    <h3 className="font-serif text-base font-bold text-brand-navy tracking-wide">
+                    <h3 className={`font-serif text-base font-bold tracking-wide ${theme === 'light' ? 'text-brand-navy' : 'text-slate-100'}`}>
                       {service.name}
                     </h3>
                     
-                    <p className="text-xs text-slate-500 mt-2.5 leading-relaxed line-clamp-3">
+                    <p className={`text-xs mt-2.5 leading-relaxed line-clamp-3 ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>
                       {service.shortDescription}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
-                    <span className="text-[10px] font-mono text-[#888]">
+                  <div className={`mt-6 pt-4 border-t flex justify-between items-center ${theme === 'light' ? 'border-slate-100' : 'border-brand-gold/10'}`}>
+                    <span className={`text-[10px] font-mono ${theme === 'light' ? 'text-[#888]' : 'text-slate-300'}`}>
                       From ₹{(service.basePrice / 1000).toFixed(0)}k
                     </span>
                     
@@ -484,16 +569,17 @@ export default function App() {
         selectedServiceIds={selectedServiceIds}
         onToggleServiceId={handleToggleServiceId}
         onInitiateBooking={handleInitiateBooking}
+        theme={theme}
       />
 
       {/* 7. Gallery Grid visualizer */}
       <GalleryGrid />
 
       {/* 8. Client Testimonials slide */}
-      <ReviewsSection />
+      <ReviewsSection theme={theme} />
 
       {/* 9. Contact form & Location details */}
-      <section id="contact" className="py-20 bg-brand-bg relative border-b border-brand-gold/15">
+      <section id="contact" className={`py-20 relative border-b border-brand-gold/15 transition-colors duration-300 ${theme === 'light' ? 'bg-[#FAF7F4]' : 'bg-brand-bg'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
@@ -503,13 +589,13 @@ export default function App() {
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold">
                   GET IN TOUCH WITH DESIGN LEADERS
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-gold-bright mt-3 leading-tight">
+                <h2 className={`font-serif text-3xl sm:text-4xl font-bold mt-3 leading-tight ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>
                   Headquarters & Consultation Desk
                 </h2>
                 <div className="w-16 h-1 bg-brand-gold mt-4 rounded-full" />
               </div>
 
-              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
+              <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'light' ? 'text-slate-600' : 'text-slate-200'}`}>
                 We accept physical consultation visits strictly via prior ticketing. Contact our primary support desks or plan a virtual layout meet with our visual architects below.
               </p>
 
@@ -517,35 +603,35 @@ export default function App() {
               <div className="space-y-4">
                 
                 {/* Phones */}
-                <div className="flex items-center gap-3.5 bg-brand-white border border-brand-gold/15 p-4 rounded-xl shadow-sm">
-                  <div className="w-10 h-10 rounded-lg bg-brand-navy/5 text-brand-navy flex items-center justify-center">
+                <div className={`flex items-center gap-3.5 border border-brand-gold/15 p-4 rounded-xl shadow-sm transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-brand-navy/5 text-brand-navy' : 'bg-brand-navy/30 text-brand-gold'}`}>
                     <Phone className="w-5 h-5 text-brand-gold" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-[#888] uppercase tracking-wider block">Direct Booking Hotline</span>
-                    <p className="font-sans font-bold text-sm text-brand-navy mt-0.5">+91 98765 43210</p>
+                    <p className={`font-sans font-bold text-sm mt-0.5 ${theme === 'light' ? 'text-brand-navy' : 'text-white'}`}>+91 98765 43210</p>
                   </div>
                 </div>
 
                 {/* Emails */}
-                <div className="flex items-center gap-3.5 bg-brand-white border border-brand-gold/15 p-4 rounded-xl shadow-sm">
-                  <div className="w-10 h-10 rounded-lg bg-brand-navy/5 text-brand-navy flex items-center justify-center">
+                <div className={`flex items-center gap-3.5 border border-brand-gold/15 p-4 rounded-xl shadow-sm transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-brand-navy/5 text-brand-navy' : 'bg-brand-navy/30 text-brand-gold'}`}>
                     <Mail className="w-5 h-5 text-brand-gold" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-[#888] uppercase tracking-wider block">Official Mailbox</span>
-                    <p className="font-sans font-bold text-sm text-brand-navy mt-0.5">consult@theblueeyeevents.com</p>
+                    <p className={`font-sans font-bold text-sm mt-0.5 ${theme === 'light' ? 'text-brand-navy' : 'text-white'}`}>consult@theblueeyeevents.com</p>
                   </div>
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center gap-3.5 bg-brand-white border border-brand-gold/15 p-4 rounded-xl shadow-sm">
-                  <div className="w-10 h-10 rounded-lg bg-brand-navy/5 text-brand-navy flex items-center justify-center">
+                <div className={`flex items-center gap-3.5 border border-brand-gold/15 p-4 rounded-xl shadow-sm transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-brand-navy/5 text-brand-navy' : 'bg-brand-navy/30 text-brand-gold'}`}>
                     <MapPin className="w-5 h-5 text-brand-gold" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-[#888] uppercase tracking-wider block">Creative Headquarters</span>
-                    <p className="font-sans font-bold text-xs text-brand-navy mt-0.5">The Blue Eye Pavilion, Imperial Ring Road, Jodhpur, RJ</p>
+                    <p className={`font-sans font-bold text-xs mt-0.5 ${theme === 'light' ? 'text-brand-navy' : 'text-white'}`}>The Blue Eye Pavilion, Imperial Ring Road, Jodhpur, RJ</p>
                   </div>
                 </div>
 
@@ -555,13 +641,13 @@ export default function App() {
               <div className="pt-2">
                 <p className="text-[10px] font-mono uppercase tracking-widest text-[#888] font-bold mb-3">FOLLOW OUR DESIGNS ON SOCIALS</p>
                 <div className="flex gap-2.5">
-                  <a href="https://instagram.com" className="w-9 h-9 rounded-full bg-brand-white text-brand-navy border border-[#ddd] hover:text-brand-gold hover:border-brand-gold flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm">
+                  <a href="https://instagram.com" className={`w-9 h-9 rounded-full border flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm ${theme === 'light' ? 'bg-white text-brand-navy border-slate-200 hover:text-brand-gold hover:border-brand-gold' : 'bg-[#111A35] text-slate-200 border-brand-gold/20 hover:text-brand-gold hover:hover:border-brand-gold'}`}>
                     <Instagram className="w-4 h-4" />
                   </a>
-                  <a href="https://facebook.com" className="w-9 h-9 rounded-full bg-brand-white text-brand-navy border border-[#ddd] hover:text-brand-gold hover:border-brand-gold flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm">
+                  <a href="https://facebook.com" className={`w-9 h-9 rounded-full border flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm ${theme === 'light' ? 'bg-white text-brand-navy border-slate-200 hover:text-brand-gold hover:border-brand-gold' : 'bg-[#111A35] text-slate-200 border-brand-gold/20 hover:text-brand-gold hover:hover:border-brand-gold'}`}>
                     <Facebook className="w-4 h-4" />
                   </a>
-                  <a href="https://youtube.com" className="w-9 h-9 rounded-full bg-brand-white text-brand-navy border border-[#ddd] hover:text-brand-gold hover:border-brand-gold flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm">
+                  <a href="https://youtube.com" className={`w-9 h-9 rounded-full border flex items-center justify-center hover:-translate-y-1 transition-all shadow-sm ${theme === 'light' ? 'bg-white text-brand-navy border-slate-200 hover:text-brand-gold hover:border-brand-gold' : 'bg-[#111A35] text-slate-200 border-brand-gold/20 hover:text-brand-gold hover:hover:border-brand-gold'}`}>
                     <Youtube className="w-4 h-4" />
                   </a>
                 </div>
@@ -569,14 +655,14 @@ export default function App() {
             </div>
 
             {/* General Contact Form (7 columns) */}
-            <div className="lg:col-span-7 bg-brand-white border border-brand-gold/15 rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div className={`lg:col-span-7 border border-brand-gold/15 rounded-2xl p-6 sm:p-8 shadow-xl transition-colors duration-300 ${theme === 'light' ? 'bg-white' : 'bg-[#111A35]'}`}>
               {contactSuccess ? (
                 <div className="text-center py-16 space-y-4">
                   <div className="w-14 h-14 bg-[#2E7D32]/10 border border-[#2E7D32] text-[#2E7D32] rounded-full mx-auto flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 animate-bounce" />
                   </div>
                   <h3 className="font-serif text-xl font-bold text-brand-gold-bright">Request Registered</h3>
-                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
+                  <p className={`text-xs max-w-sm mx-auto leading-relaxed ${theme === 'light' ? 'text-slate-500' : 'text-slate-300'}`}>
                     We have received your message with gold priority protocols. A member of the curation advisory panel will call you or reply soon.
                   </p>
                 </div>
@@ -584,12 +670,12 @@ export default function App() {
                 <form onSubmit={handleContactSubmit} className="space-y-5">
                   <div className="flex items-center gap-2 border-b border-brand-gold/15 pb-3">
                     <Compass className="w-5 h-5 text-brand-gold animate-spin-slow" />
-                    <h3 className="font-serif text-xl font-bold text-brand-gold-bright tracking-wide">Quick Callback Registration</h3>
+                    <h3 className={`font-serif text-xl font-bold tracking-wide ${theme === 'light' ? 'text-brand-navy' : 'text-brand-gold-bright'}`}>Quick Callback Registration</h3>
                   </div>
  
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
+                      <label className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                         Your Full Name *
                       </label>
                       <input
@@ -599,11 +685,11 @@ export default function App() {
                         value={contactName}
                         onChange={(e) => setContactName(e.target.value)}
                         placeholder="E.g., Devrajsinh Jadeja"
-                        className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
+                        className={`w-full text-xs p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200 font-semibold border ${theme === 'light' ? 'bg-slate-50 border-slate-200 text-slate-800' : 'bg-brand-bg/50 border-brand-gold/30 text-white placeholder-slate-300'}`}
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
+                      <label className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                         Email Address *
                       </label>
                       <input
@@ -613,13 +699,13 @@ export default function App() {
                         value={contactEmail}
                         onChange={(e) => setContactEmail(e.target.value)}
                         placeholder="e.g. name@domain.com"
-                        className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
+                        className={`w-full text-xs p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200 font-semibold border ${theme === 'light' ? 'bg-slate-50 border-slate-200 text-slate-800' : 'bg-brand-bg/50 border-brand-gold/30 text-white placeholder-slate-300'}`}
                       />
                     </div>
                   </div>
  
                   <div>
-                    <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
+                    <label className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                       Direct Contact Line
                     </label>
                     <input
@@ -628,12 +714,12 @@ export default function App() {
                       value={contactPhone}
                       onChange={(e) => setContactPhone(e.target.value)}
                       placeholder="+91 XXXXX XXXXX"
-                      className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
+                      className={`w-full text-xs p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200 font-semibold border ${theme === 'light' ? 'bg-slate-50 border-slate-200 text-slate-800' : 'bg-brand-bg/50 border-brand-gold/30 text-white placeholder-slate-300'}`}
                     />
                   </div>
  
                   <div>
-                    <label className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-1.5">
+                    <label className={`text-xs font-mono font-bold uppercase tracking-widest block mb-1.5 ${theme === 'light' ? 'text-brand-navy' : 'text-slate-300'}`}>
                       Discuss Your Dream Concept *
                     </label>
                     <textarea
@@ -643,14 +729,14 @@ export default function App() {
                       value={contactMsg}
                       onChange={(e) => setContactMsg(e.target.value)}
                       placeholder="Share what type of wedding decoration, sangeet program choreographies, photography coverage, or dynamic food banquets you would like. Our team loves specific design briefs!"
-                      className="w-full text-xs p-3.5 bg-brand-navy/40 text-white placeholder-slate-400 border border-brand-gold/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200"
+                      className={`w-full text-xs p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold transition-all duration-200 font-semibold border ${theme === 'light' ? 'bg-slate-50 border-slate-200 text-slate-800' : 'bg-brand-bg/50 border-brand-gold/30 text-white placeholder-slate-300'}`}
                     />
                   </div>
  
                   <button
                     type="submit"
                     id="contact-submit-btn"
-                    className="w-full py-4 bg-brand-navy hover:bg-brand-gold text-brand-ivory hover:text-brand-navy font-mono text-xs font-bold tracking-widest uppercase rounded-xl transition-all border border-brand-gold/15 flex items-center justify-center gap-2 cursor-pointer"
+                    className={`w-full py-4 font-mono text-xs font-bold tracking-widest uppercase rounded-xl transition-all border flex items-center justify-center gap-2 cursor-pointer ${theme === 'light' ? 'bg-brand-navy text-white hover:bg-brand-gold hover:text-brand-navy border-brand-gold/10' : 'bg-brand-gold text-brand-navy hover:bg-[#F5D76E] border-brand-gold/10'}`}
                   >
                     SEND MESSAGE
                     <Send className="w-3.5 h-3.5 animate-pulse" />
